@@ -93,7 +93,7 @@ function CampaignBigCard({ campaign, onClick }) {
           <div style={{ width: 24, height: 1, background: 'var(--gold)', flexShrink: 0 }}/>
         </div>
         <h3 className="display" style={{ fontSize: 24, marginBottom: 6 }}>{c.name}</h3>
-        <p className="quote" style={{ fontSize: 14 }}>"{c.motto}"</p>
+        <p className="quote" style={{ fontSize: 14, margin: '0 0 0 0' }}>"{c.motto}"</p>
 
         <div className="campaign-card-meta">
           <div className="campaign-card-meta-item">
