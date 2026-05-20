@@ -50,7 +50,7 @@ function Dashboard({ navigate }) {
 
       <div className="worlds-grid mt-6">
         {WORLDS.map(w => (
-          <WorldCard key={w.id} world={w} campaigns={CAMPAIGNS.filter(c => c.worldId === w.id)} onClick={() => navigate(`/world/${w.id}`)} />
+          <WorldCard key={w.id} world={w} campaigns={CAMPAIGNS.filter(c => c.worldId === w.id)} onClick={() => navigate(`/world/${w.id}`)} navigate={navigate} />
         ))}
         <button className="world-card world-card-forge clickable" onClick={() => navigate('/worlds')}>
           <div className="forge-orb">
@@ -194,58 +194,59 @@ function ContinueCard({ campaign, world, party, navigate }) {
 // ────────────────────────────────────────────────────────────────────
 //  WorldCard
 // ────────────────────────────────────────────────────────────────────
-function WorldCard({ world, campaigns, onClick }) {
+function WorldCard({ world, campaigns, onClick, navigate }) {
   const w = world;
   const isEmpty = campaigns.length === 0;
   return (
-    <button className="world-card clickable" onClick={onClick} style={{ '--accent': w.accent, '--accent-2': w.secondary }}>
-      <div className="world-card-art">
-        <CosmicImg glyph={w.glyph} accent={w.accent} ratio="4/3"/>
-        <div className="world-card-art-overlay"/>
-        <div className="world-card-glyph-frame">
-          <CompassRose size={44} opacity={0.55}/>
-        </div>
-        <div className="world-card-stamp">
-          <div className="micro" style={{ color: 'var(--gold)' }}>{w.yearLabel}</div>
-        </div>
+    <div className="world-card" style={{ '--accent': w.accent }}>
+      {/* Art banner — klikbaar, navigeert naar world detail */}
+      <div className="world-card-art clickable" onClick={onClick}>
+        <CosmicImg glyph={w.glyph} accent={w.accent} ratio="2/1"/>
+        <div className="world-card-art-fade"/>
+        <span className="badge badge-solid-gold world-card-year">{w.yearLabel}</span>
       </div>
+
+      {/* Gecentreerde content */}
       <div className="world-card-body">
-        <div className="flex items-center justify-between gap-3">
-          <div className="eyebrow eyebrow-violet">{w.eraName}</div>
-          <span className="micro" style={{ color: 'var(--muted)' }}>{w.lastVisited}</span>
-        </div>
-        <h3 className="display mt-2" style={{ fontSize: 26 }}>{w.name}</h3>
-        <p className="quote mt-1" style={{ fontSize: 14 }}>"{w.motto}"</p>
-
-        <div className="world-card-stats mt-5">
-          <div>
-            <div className="font-display" style={{ fontSize: 22, color: 'var(--ink)' }}>{campaigns.length}</div>
-            <div className="micro mt-1">Chronicles</div>
-          </div>
-          <div className="world-card-stat-sep"/>
-          <div>
-            <div className="font-display" style={{ fontSize: 22, color: 'var(--ink)' }}>{w.locations}</div>
-            <div className="micro mt-1">Locations</div>
-          </div>
-          <div className="world-card-stat-sep"/>
-          <div>
-            <div className="font-display" style={{ fontSize: 22, color: 'var(--ink)' }}>{w.npcs}</div>
-            <div className="micro mt-1">Living cast</div>
-          </div>
+        {/* Eyebrow met gouden lijnen aan beide kanten */}
+        <div className="flex items-center justify-center gap-3" style={{ marginBottom: 12 }}>
+          <div style={{ width: 24, height: 1, background: 'var(--gold)', flexShrink: 0 }}/>
+          <span className="eyebrow eyebrow-violet" style={{ fontSize: 10 }}>{w.eraName}</span>
+          <div style={{ width: 24, height: 1, background: 'var(--gold)', flexShrink: 0 }}/>
         </div>
 
+        <h3 className="display clickable" style={{ fontSize: 28, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }} onClick={onClick}>{w.name}</h3>
+
+        <p className="quote" style={{ fontSize: 14, marginBottom: 12 }}>"{w.motto}"</p>
+        <p className="small" style={{ color: 'var(--ink-soft)', lineHeight: 1.7, marginBottom: 22 }}>{w.description}</p>
+
+        {/* Active Chronicles — links uitgelijnd binnen gecentreerde body */}
         {!isEmpty && (
-          <div className="world-card-chips mt-5">
+          <div className="mt-6" style={{ width: '100%' }}>
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <div style={{ width: 20, height: 1, background: 'var(--hairline-strong)', flexShrink: 0 }}/>
+              <span className="eyebrow eyebrow-muted" style={{ fontSize: 10 }}>ACTIVE CHRONICLES</span>
+              <div style={{ width: 20, height: 1, background: 'var(--hairline-strong)', flexShrink: 0 }}/>
+            </div>
             {campaigns.slice(0, 3).map(c => (
-              <span key={c.id} className="chip chip-bullet" style={{ '--bullet': c.accent }}>{c.name.split(' ').slice(0, 3).join(' ')}</span>
+              <button
+                key={c.id}
+                className="world-card-chronicle-row clickable"
+                onClick={e => { e.stopPropagation(); navigate ? navigate(`/campaign/${c.id}`) : onClick(); }}
+              >
+                <span className="world-card-chronicle-dot" style={{ background: c.accent }}/>
+                <span className="world-card-chronicle-name">{c.name}</span>
+                <Icon name="chevron-right" size={14}/>
+              </button>
             ))}
           </div>
         )}
+
         {isEmpty && (
-          <div className="mt-5 small" style={{ color: 'var(--muted)', fontStyle: 'italic' }}>Empty. Begin where you like.</div>
+          <p className="mt-5 small" style={{ color: 'var(--muted)', fontStyle: 'italic' }}>Een leeg kosmos wacht.</p>
         )}
       </div>
-    </button>
+    </div>
   );
 }
 
@@ -327,7 +328,7 @@ function WorldsOverview({ navigate }) {
 
       <div className="worlds-grid">
         {WORLDS.map(w => (
-          <WorldCard key={w.id} world={w} campaigns={CAMPAIGNS.filter(c => c.worldId === w.id)} onClick={() => navigate(`/world/${w.id}`)} />
+          <WorldCard key={w.id} world={w} campaigns={CAMPAIGNS.filter(c => c.worldId === w.id)} onClick={() => navigate(`/world/${w.id}`)} navigate={navigate} />
         ))}
         <button className="world-card world-card-forge clickable">
           <div className="forge-orb">

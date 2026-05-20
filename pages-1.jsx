@@ -46,9 +46,9 @@ function CampaignsOverview({ navigate }) {
       </div>
 
       {/* Search */}
-      <div className="relative mb-12" style={{ maxWidth: 520 }}>
-        <Icon name="search" size={16} style={{ position: 'absolute', left: 18, top: '50%', transform: 'translateY(-50%)', color: 'var(--muted)' }}/>
-        <input className="input input-lg" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search the chronicle…" />
+      <div className="search-wrap mb-10">
+        <Icon name="search" size={16} className="search-icon"/>
+        <input className="input input-lg" value={search} onChange={e => setSearch(e.target.value)} placeholder="Doorzoek de kronieken…" />
       </div>
 
       <OrnateDivider label="Chronicles" />

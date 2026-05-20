@@ -188,7 +188,7 @@
 .constellation {
   position: relative;
   width: 100%;
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   overflow: hidden;
   background: linear-gradient(180deg, #0a0a18 0%, #15142a 100%);
 }
@@ -273,7 +273,7 @@
   background: rgba(15, 14, 28, 0.7);
   backdrop-filter: blur(8px);
   border: 1px solid var(--hairline);
-  border-radius: var(--r-sm);
+  border-radius: var(--r-md);
   z-index: 10;
 }
 .leg-dot { width: 6px; height: 6px; border-radius: 50%; }
@@ -300,7 +300,7 @@
   height: 110px;
   background: var(--void-2);
   border: 1px solid var(--hairline);
-  border-radius: var(--r-sm);
+  border-radius: var(--r-xl);
   margin-bottom: var(--sp-3);
   padding: 0 var(--sp-4);
   overflow: hidden;
@@ -391,7 +391,7 @@
   padding: var(--sp-4);
   background: var(--surface);
   border: 1px solid var(--hairline);
-  border-radius: var(--r);
+  border-radius: var(--r-xl);
   text-align: left;
   width: 100%;
   transition: all 220ms cubic-bezier(.2,.7,.2,1);
@@ -465,7 +465,7 @@
   padding: var(--sp-4);
   background: var(--surface);
   border: 1px solid var(--hairline);
-  border-radius: var(--r-sm);
+  border-radius: var(--r-md);
   transition: all 200ms;
 }
 
@@ -490,7 +490,7 @@
   padding: var(--sp-3);
   background: var(--surface);
   border: 1px solid var(--hairline);
-  border-radius: var(--r-sm);
+  border-radius: var(--r-xl);
   text-align: left;
   width: 100%;
   transition: all 200ms;
@@ -500,7 +500,7 @@
 .npc-portrait {
   position: relative;
   width: 56px; height: 56px;
-  border-radius: var(--r-sm);
+  border-radius: var(--r-xl);
   overflow: hidden;
   flex-shrink: 0;
   border: 1px solid var(--hairline);

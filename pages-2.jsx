@@ -349,9 +349,9 @@ function CharactersOverview({ navigate }) {
         }
       />
 
-      <div className="relative mb-12" style={{ maxWidth: 520 }}>
-        <Icon name="search" size={16} style={{ position: 'absolute', left: 18, top: '50%', transform: 'translateY(-50%)', color: 'var(--muted)' }}/>
-        <input className="input input-lg" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by name, class, race…"/>
+      <div className="search-wrap mb-10">
+        <Icon name="search" size={16} className="search-icon"/>
+        <input className="input input-lg" value={search} onChange={e => setSearch(e.target.value)} placeholder="Zoek op naam, klasse, ras…"/>
       </div>
 
       <OrnateDivider label="The Roster"/>
@@ -608,9 +608,9 @@ function Bestiary({ navigate }) {
       <div className="grid bestiary-grid">
         {/* List */}
         <div className="flex flex-col gap-4">
-          <div className="relative">
-            <Icon name="search" size={15} style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: 'var(--muted)' }}/>
-            <input className="input" style={{ paddingLeft: 40 }} value={search} onChange={e => setSearch(e.target.value)} placeholder="Search beasts…"/>
+          <div className="search-wrap">
+            <Icon name="search" size={15} className="search-icon"/>
+            <input className="input" value={search} onChange={e => setSearch(e.target.value)} placeholder="Doorzoek het bestiarium…"/>
           </div>
 
           <div className="flex flex-col gap-2">

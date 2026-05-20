@@ -14,7 +14,7 @@
   flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   overflow: hidden;
   text-align: left;
   width: 100%;
@@ -86,7 +86,7 @@
 .campaign-empty {
   background: transparent;
   border: 2px dashed var(--hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   padding: 56px 24px;
   display: flex;
   flex-direction: column;
@@ -113,7 +113,7 @@
    ═══════════════════════════════════════════════════════════════ */
 .campaign-hero {
   position: relative;
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   overflow: hidden;
   border: 1px solid var(--hairline-strong);
   display: grid;
@@ -238,7 +238,7 @@
 .lore-card {
   background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
   border: 1px solid var(--hairline-strong);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   padding: 32px;
   position: relative;
   overflow: hidden;
@@ -295,7 +295,7 @@
   padding: var(--sp-3) var(--sp-4);
   background: var(--surface);
   border: 1px solid var(--hairline-strong);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   box-shadow: var(--shadow-2), inset 0 1px 0 rgba(255,255,255,0.03);
 }
 .session-clock-divider { width: 1px; height: 32px; background: var(--hairline); }
@@ -321,7 +321,7 @@
   padding: 20px;
   background: linear-gradient(180deg, rgba(155,138,255,0.06), transparent);
   border: 1px solid rgba(155,138,255,0.25);
-  border-radius: var(--r-sm);
+  border-radius: var(--r-md);
   border-left: 3px solid var(--gold);
 }
 
@@ -386,7 +386,7 @@
   min-height: 460px;
   padding: 48px 24px;
   border: 2px dashed var(--hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   background: var(--void-2);
 }
 
@@ -403,7 +403,7 @@
   display: flex; flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   overflow: hidden;
   text-align: left;
   transition: all 280ms cubic-bezier(.2,.7,.2,1);
@@ -462,7 +462,7 @@
 
 .char-hero-portrait {
   position: relative;
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   overflow: hidden;
   border: 1px solid var(--hairline-strong);
 }
@@ -576,7 +576,7 @@
   padding: 10px;
   background: var(--surface);
   border: 1px solid var(--hairline);
-  border-radius: var(--r-sm);
+  border-radius: var(--r-md);
   width: 100%;
   text-align: left;
   transition: all 180ms;
@@ -620,7 +620,7 @@
   padding: var(--sp-5);
   background: var(--void-2);
   border: 1px solid var(--hairline);
-  border-radius: var(--r-sm);
+  border-radius: var(--r-md);
 }
 
 .specimen-vital { display: flex; align-items: center; gap: 14px; color: var(--violet); }
@@ -728,7 +728,7 @@
   gap: 0;
   background: linear-gradient(135deg, var(--surface), var(--surface-2));
   border: 1px solid var(--hairline-strong);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   overflow: hidden;
   isolation: isolate;
 }
@@ -736,7 +736,7 @@
   content: '';
   position: absolute;
   inset: -1px;
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   pointer-events: none;
   background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 40%, transparent), transparent 50%);
   opacity: 0.5;
@@ -801,87 +801,124 @@
 /* ─── Worlds grid ──────────────────────────────────────────── */
 .worlds-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: var(--sp-6);
 }
 
+/* ─── World card — banner top, gecentreerde content ───────── */
 .world-card {
-  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   overflow: hidden;
-  text-align: left;
   width: 100%;
-  cursor: pointer;
-  transition: all 280ms cubic-bezier(.2,.7,.2,1);
+  transition: border-color 280ms cubic-bezier(.2,.7,.2,1), box-shadow 280ms cubic-bezier(.2,.7,.2,1);
 }
 .world-card:hover {
-  border-color: var(--accent);
-  background: var(--surface-2);
-  transform: translateY(-4px);
-  box-shadow: 0 24px 56px rgba(0,0,0,0.4), 0 0 32px color-mix(in oklab, var(--accent) 22%, transparent);
+  border-color: var(--accent, var(--violet));
+  box-shadow: 0 24px 56px rgba(0,0,0,0.45), 0 0 40px color-mix(in oklab, var(--accent, var(--violet)) 20%, transparent);
 }
 
+/* Art banner bovenaan */
 .world-card-art {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 2/1;
   overflow: hidden;
+  cursor: pointer;
 }
-.world-card-art-overlay {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 70% 60% at 30% 40%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 60%),
-    linear-gradient(180deg, transparent 50%, rgba(15,14,28,0.8) 100%);
+.world-card-art-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, var(--surface) 100%);
   pointer-events: none;
 }
-.world-card-glyph-frame {
+.world-card-year {
   position: absolute;
-  top: 16px; right: 16px;
-  width: 60px; height: 60px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  background: rgba(15,14,28,0.6);
-  border: 1px solid var(--hairline);
-  backdrop-filter: blur(4px);
-}
-.world-card-stamp {
-  position: absolute;
-  bottom: 14px; left: 16px;
-  padding: 6px 10px;
-  background: rgba(15,14,28,0.8);
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-xs);
+  top: 14px;
+  right: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  pointer-events: none;
 }
 
+/* Gecentreerde content */
 .world-card-body {
-  padding: 24px 24px 26px;
-  flex: 1;
+  padding: 20px 28px 28px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .world-card-stats {
   display: flex;
   align-items: center;
-  gap: var(--sp-4);
-  padding: var(--sp-4) 0;
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
+}
+.world-card-stat {
+  flex: 1;
+  text-align: center;
+  padding: 2px 0;
 }
 .world-card-stat-sep {
   width: 1px;
-  align-self: stretch;
-  background: var(--hairline);
+  height: 40px;
+  background: var(--hairline-strong);
+  flex-shrink: 0;
 }
 
-.world-card-chips {
+.world-card-btn {
+  padding: 9px 18px;
+  font-size: 12px;
+}
+.world-card-lore-btn {
+  background: rgba(15,14,28,0.6);
+  border-color: var(--hairline-strong);
+}
+.world-card-lore-btn:hover { background: var(--surface-3); color: var(--ink); }
+
+.world-card-edit-btn {
+  padding: 9px 13px;
+  background: rgba(15,14,28,0.6);
+  border-color: var(--hairline);
+}
+
+.world-card-chronicle-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--hairline);
+  text-align: left;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-family: var(--font-body);
+  background: transparent;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-radius: 0;
+  width: 100%;
+  transition: color 160ms;
+}
+.world-card-chronicle-row:first-child { border-top: 1px solid var(--hairline); }
+.world-card-chronicle-row:hover { color: var(--ink); }
+.world-card-chronicle-row:hover .world-card-chronicle-dot { box-shadow: 0 0 8px currentColor; }
+
+.world-card-chronicle-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  transition: box-shadow 160ms;
+}
+.world-card-chronicle-name { flex: 1; }
+
+@media (max-width: 720px) {
+  .worlds-grid { grid-template-columns: 1fr; }
 }
 
 /* Bullet chip — small dot before label, color-keyed */
@@ -930,7 +967,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
   background: linear-gradient(135deg, var(--surface), var(--surface-2));
   border: 1px solid var(--hairline-strong);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   overflow: hidden;
 }
 .world-hero-art {
@@ -974,7 +1011,7 @@
   align-items: stretch;
   background: var(--surface);
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   padding: 16px;
   text-align: left;
   cursor: pointer;
@@ -1036,7 +1073,7 @@
   flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   padding: 22px 22px 24px;
   text-align: left;
   cursor: pointer;
