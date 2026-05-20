@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:28px; background:var(--void); color:var(--ink); font-family:var(--font-body); }
+  .row { display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; align-items:stretch; }
+  .swatch {
+    background: var(--surface); border: 1px solid var(--hairline);
+    padding: 22px 18px 18px; border-radius: var(--r);
+    text-align: center; min-height: 130px; display: flex; flex-direction: column; justify-content: center;
+  }
+  .name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+  .v { font-family: var(--font-mono); font-size: 10px; color: var(--muted); margin-top: 8px; line-height:1.5; word-break:break-all; }
+  .label { font-family: var(--font-display); font-size: 14px; letter-spacing: 0.06em; color: var(--ink); }
+  h2 { font-family: var(--font-display); font-weight:600; font-size: 13px; letter-spacing: 0.32em; color: var(--gold); text-transform: uppercase; margin: 4px 0 14px; }
+  section + section { margin-top: 24px; }
+</style></head>
+<body>
+  <section>
+    <h2>Rest shadows · subtle, near-invisible</h2>
+    <div class="row">
+      <div class="swatch" style="box-shadow: 0 2px 8px rgba(0,0,0,0.3)"><div class="name">--shadow-1</div><div class="label">Whisper</div><div class="v">0 2 8 / 30% black</div></div>
+      <div class="swatch" style="box-shadow: 0 8px 24px rgba(0,0,0,0.45)"><div class="name">--shadow-2</div><div class="label">Lifted</div><div class="v">0 8 24 / 45% black</div></div>
+      <div class="swatch" style="box-shadow: 0 24px 64px rgba(0,0,0,0.6)"><div class="name">--shadow-3</div><div class="label">Modal</div><div class="v">0 24 64 / 60% black</div></div>
+    </div>
+  </section>
+  <section>
+    <h2>Hover glows · coloured halos</h2>
+    <div class="row">
+      <div class="swatch" style="box-shadow: 0 0 40px rgba(155,138,255,0.35)"><div class="name">--shadow-glow</div><div class="label" style="color:#9b8aff">Violet glow</div><div class="v">0 0 40 / violet 35%</div></div>
+      <div class="swatch" style="box-shadow: 0 0 32px rgba(245,200,66,0.30)"><div class="name">--shadow-glow-gold</div><div class="label" style="color:#f5c842">Gold glow</div><div class="v">0 0 32 / gold 30%</div></div>
+      <div class="swatch" style="box-shadow: 0 24px 56px rgba(0,0,0,0.4), 0 0 32px rgba(155,138,255,0.22)"><div class="name">[card hover]</div><div class="label">Card hover</div><div class="v">drop + accent halo</div></div>
+    </div>
+  </section>
+</body></html>

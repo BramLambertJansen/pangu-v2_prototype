@@ -1,0 +1,148 @@
+/* ═══════════════════════════════════════════════════════════════
+   PANGU — SANCTUM DESIGN TOKENS
+   Foundational color + type + spacing variables.
+   Import this once at the root of your app:
+     <link rel="stylesheet" href="colors_and_type.css">
+   Then load Google Fonts: Cinzel · Manrope · Cormorant Garamond · JetBrains Mono.
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+:root {
+  /* ── Fonts ────────────────────────────────────────────────── */
+  --font-display: 'Cinzel', 'Cormorant Garamond', serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-quote: 'Cormorant Garamond', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* ── Color: Voids & surfaces ──────────────────────────────── */
+  --void:        #0a0a14;   /* deepest. body background.        */
+  --void-2:      #0f0e1c;   /* recessed wells (inputs, navs).   */
+  --surface:     #15142a;   /* default card.                    */
+  --surface-2:   #1c1a35;   /* elevated card, hover.            */
+  --surface-3:   #252243;   /* highest surface (chips, pills).  */
+  --surface-hover:#2d2950;  /* secondary hover.                 */
+
+  /* ── Color: Primary accent — Violet (the nebula) ──────────── */
+  --violet:      #9b8aff;
+  --violet-soft: #b5a7ff;
+  --violet-deep: #6b58d6;
+  --violet-glow: rgba(155, 138, 255, 0.35);
+
+  /* ── Color: Ceremonial accent — Gold (the candle) ─────────── */
+  --gold:        #f5c842;
+  --gold-soft:   #ffd968;
+  --gold-deep:   #c9a02e;
+  --gold-glow:   rgba(245, 200, 66, 0.3);
+
+  /* ── Color: Status semantics (use sparingly) ──────────────── */
+  --teal:        #3ecfb2;   /* alive · active · positive        */
+  --crimson:     #ff6b6b;   /* danger · enemy · critical HP     */
+  --azure:       #6ba7ff;   /* informational                    */
+
+  /* ── Color: Ink scale (text on dark) ──────────────────────── */
+  --ink:         #f0ecf7;   /* high-emphasis — headings, values */
+  --ink-soft:    #c8c2dc;   /* body copy                        */
+  --muted:       #8079a0;   /* labels, captions, eyebrows base  */
+  --subtle:      #4a4565;   /* disabled, future, tertiary       */
+
+  /* ── Color: Borders ───────────────────────────────────────── */
+  --hairline:        rgba(155, 138, 255, 0.14);
+  --hairline-strong: rgba(155, 138, 255, 0.28);
+
+  /* ── Spacing (4-pt scale) ─────────────────────────────────── */
+  --sp-1:  4px;  --sp-2:  8px;  --sp-3: 12px;  --sp-4: 16px;
+  --sp-5: 20px;  --sp-6: 24px;  --sp-8: 32px;  --sp-10: 40px;
+  --sp-12: 48px; --sp-16: 64px; --sp-20: 80px;
+
+  /* ── Radii ────────────────────────────────────────────────── */
+  --r-xs:   4px;
+  --r-sm:   8px;
+  --r:     12px;
+  --r-md:  16px;
+  --r-lg:  20px;
+  --r-xl:  28px;
+  --r-full: 9999px;
+
+  /* ── Shadows (always subtle at rest; bold on hover) ───────── */
+  --shadow-1: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-3: 0 24px 64px rgba(0, 0, 0, 0.6);
+  --shadow-glow:      0 0 40px var(--violet-glow);
+  --shadow-glow-gold: 0 0 32px var(--gold-glow);
+
+  /* ── Motion ───────────────────────────────────────────────── */
+  --ease-out: cubic-bezier(.2,.7,.2,1);
+  --t-fast:   180ms;
+  --t-base:   220ms;
+  --t-slow:   280ms;
+}
+
+/* ── Density overrides (apply to :root) ─────────────────────── */
+:root[data-density="cozy"]    { --sp-4: 20px; --sp-5: 24px; --sp-6: 32px; --sp-8: 40px; }
+:root[data-density="compact"] { --sp-4: 12px; --sp-5: 14px; --sp-6: 18px; --sp-8: 24px; }
+
+/* ── Accent overrides (re-tint --violet) ────────────────────── */
+:root[data-accent="teal"]    { --violet: #3ecfb2; --violet-soft: #6ee0c8; --violet-deep: #2aa48d; --violet-glow: rgba(62,207,178,0.35); }
+:root[data-accent="gold"]    { --violet: #f5c842; --violet-soft: #ffd968; --violet-deep: #c9a02e; --violet-glow: rgba(245,200,66,0.35); }
+:root[data-accent="azure"]   { --violet: #6ba7ff; --violet-soft: #8fbfff; --violet-deep: #4f88dc; --violet-glow: rgba(107,167,255,0.35); }
+:root[data-accent="crimson"] { --violet: #ff6b6b; --violet-soft: #ff9090; --violet-deep: #d04545; --violet-glow: rgba(255,107,107,0.35); }
+
+/* ═══════════════════════════════════════════════════════════════
+   SEMANTIC TYPE — drop-in classes
+   ═══════════════════════════════════════════════════════════════ */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.eyebrow-violet { color: var(--violet); }
+.eyebrow-muted  { color: var(--muted); }
+
+.display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+}
+.display {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.035em;
+}
+.title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.heading {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.body    { font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
+.body-lg { font-size: 17px; line-height: 1.70; color: var(--ink-soft); }
+.small   { font-size: 13px; color: var(--muted); }
+.micro   { font-size: 11px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+.quote   { font-family: var(--font-quote); font-style: italic; font-size: 19px; line-height: 1.55; color: var(--ink-soft); }
+.kicker  { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--gold); letter-spacing: 0.30em; }
+
+.font-display { font-family: var(--font-display); }
+.font-quote   { font-family: var(--font-quote); font-style: italic; }
+.font-mono    { font-family: var(--font-mono); }

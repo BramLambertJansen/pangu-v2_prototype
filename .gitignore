@@ -1,0 +1,21 @@
+# Use of node_modules / build output
+node_modules/
+dist/
+build/
+.cache/
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local env
+.env
+.env.local
+
+# Project-internal scratch / unrelated files
+src/
+screenshots/
+Pangu v2-print.html
+"Pangu - Sanctum II (standalone).html"

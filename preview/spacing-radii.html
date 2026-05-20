@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:28px; background:var(--void); color:var(--ink); font-family:var(--font-body); }
+  .row { display:grid; grid-template-columns: repeat(4, 1fr); gap:18px; }
+  .swatch { background: var(--surface); border:1px solid var(--hairline-strong); padding: 22px; text-align: center; }
+  .name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+  .v { font-family: var(--font-mono); font-size: 11px; color: var(--muted); margin-top: 12px; }
+  .label { font-family: var(--font-display); font-size: 12px; letter-spacing: 0.18em; color: var(--ink-soft); text-transform: uppercase; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="swatch" style="border-radius: 4px"><div class="name">--r-xs</div><div class="label">4px</div><div class="v">Mini · tags · dice cells</div></div>
+    <div class="swatch" style="border-radius: 8px"><div class="name">--r-sm</div><div class="label">8px</div><div class="v">Buttons · inputs</div></div>
+    <div class="swatch" style="border-radius: 12px"><div class="name">--r</div><div class="label">12px</div><div class="v">Default card</div></div>
+    <div class="swatch" style="border-radius: 16px"><div class="name">--r-md</div><div class="label">16px</div><div class="v">Feature card</div></div>
+  </div>
+  <div class="row" style="margin-top:18px">
+    <div class="swatch" style="border-radius: 20px"><div class="name">--r-lg</div><div class="label">20px</div><div class="v">Hero block</div></div>
+    <div class="swatch" style="border-radius: 28px"><div class="name">--r-xl</div><div class="label">28px</div><div class="v">Reserved</div></div>
+    <div class="swatch" style="border-radius: 9999px; padding: 22px 22px;"><div class="name">--r-full</div><div class="label">Pill</div><div class="v">Chips · badges</div></div>
+    <div class="swatch" style="border-radius: 0"><div class="name">[none]</div><div class="label">0px</div><div class="v">Ornate rules only</div></div>
+  </div>
+</body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:28px; background:var(--void); color:var(--ink); font-family:var(--font-body); }
+  .row { display:flex; flex-wrap:wrap; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--hairline); }
+  .row:last-child { border-bottom: none; }
+  .row .lab { width: 130px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase; align-self:center; }
+  .badge { display:inline-flex; align-items:center; gap: 5px; padding: 3px 9px; border-radius: 9999px; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; border: 1px solid transparent; }
+  .badge-violet { background: rgba(155,138,255,.12); color: #9b8aff; border-color: rgba(155,138,255,.3); }
+  .badge-gold   { background: rgba(245,200,66,.12); color: #f5c842; border-color: rgba(245,200,66,.3); }
+  .badge-teal   { background: rgba(62,207,178,.12); color: #3ecfb2; border-color: rgba(62,207,178,.3); }
+  .badge-solid-gold   { background: #f5c842; color: #0a0a14; }
+  .badge-solid-violet { background: #9b8aff; color: #0a0a14; }
+  .badge-outline { background: transparent; color: #c8c2dc; border-color: rgba(155,138,255,.28); }
+  .chip { display:inline-flex; align-items:center; gap: 6px; padding: 5px 11px; background: var(--surface-2); border:1px solid var(--hairline); border-radius: 9999px; font-size: 12px; color: var(--ink-soft); }
+  .chip-bullet { position: relative; padding-left: 18px; }
+  .chip-bullet::before { content: ''; position: absolute; left: 8px; top: 50%; transform: translateY(-50%); width: 6px; height: 6px; border-radius: 50%; background: var(--bullet, #9b8aff); box-shadow: 0 0 6px var(--bullet, #9b8aff); }
+  .stat-pill { display:inline-flex; align-items:center; gap: 10px; padding: 8px 14px 8px 10px; background: var(--surface); border:1px solid var(--hairline); border-radius: 9999px; font-size: 13px; }
+  .stat-pill .ic { width: 22px; height: 22px; border-radius: 9999px; background: rgba(155,138,255,.1); color: #9b8aff; display:flex; align-items:center; justify-content:center; }
+  .stat-pill .val { font-weight: 700; color: var(--ink); }
+  .stat-pill .lab { color: var(--muted); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+</style></head>
+<body>
+  <div class="row"><div class="lab">Badges</div>
+    <span class="badge badge-violet">CHRONICLE</span>
+    <span class="badge badge-gold">ACTIVE</span>
+    <span class="badge badge-teal">● LIVE</span>
+    <span class="badge badge-solid-gold">ACTIVE</span>
+    <span class="badge badge-solid-violet">ONESHOT</span>
+    <span class="badge badge-outline">PAUSED</span>
+  </div>
+  <div class="row"><div class="lab">Chips</div>
+    <span class="chip">12 sessions</span>
+    <span class="chip">3 active</span>
+    <span class="chip chip-bullet" style="--bullet:#9b8aff">Faerûn</span>
+    <span class="chip chip-bullet" style="--bullet:#ff6b6b">Ravenloft</span>
+    <span class="chip chip-bullet" style="--bullet:#3ecfb2">The Spire</span>
+  </div>
+  <div class="row"><div class="lab">Stat pills</div>
+    <span class="stat-pill"><span class="ic"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h6a4 4 0 014 4v12a3 3 0 00-3-3H4z"/><path d="M20 4h-6a4 4 0 00-4 4v12a3 3 0 013-3h7z"/></svg></span><span class="val">3</span><span class="lab">Total</span></span>
+    <span class="stat-pill"><span class="ic" style="background: rgba(62,207,178,.12); color: #3ecfb2"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><span class="val">2</span><span class="lab">Active</span></span>
+    <span class="stat-pill"><span class="ic" style="background: rgba(245,200,66,.12); color: #f5c842"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/></svg></span><span class="val">13</span><span class="lab">Players</span></span>
+  </div>
+</body></html>

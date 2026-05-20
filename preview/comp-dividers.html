@@ -1,0 +1,18 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:28px; background:var(--void); color:var(--ink); font-family:var(--font-body); }
+  .div-ornate { display:flex; align-items:center; gap: 16px; margin: 8px 0 28px; }
+  .div-ornate::before, .div-ornate::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(155,138,255,0.28), transparent); }
+  .div-ornate .glyph { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.40em; color: #f5c842; padding: 6px 18px; border: 1px solid rgba(155,138,255,.14); border-radius: 9999px; background: #15142a; text-transform: uppercase; white-space: nowrap; }
+  .eye-row { display:flex; align-items:center; gap: 12px; margin-bottom: 26px; }
+  .eye-row .rule { height: 1px; width: 36px; background: #f5c842; }
+  .eye { font-size: 10.5px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: #f5c842; }
+  .eye.violet { color: #9b8aff; }
+</style></head>
+<body>
+  <div class="eye-row"><div class="rule"></div><div class="eye">Your saga begins here</div></div>
+  <div class="div-ornate"><span class="glyph">✦ Chronicles ✦</span></div>
+  <div class="div-ornate"><span class="glyph">❀ Party Vitals ❀</span></div>
+  <div class="div-ornate"><span class="glyph">☾ One-Night Tales ☾</span></div>
+  <div class="eye-row"><div class="rule"></div><div class="eye violet">The cradle of every story</div></div>
+</body></html>

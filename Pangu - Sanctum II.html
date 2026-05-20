@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pangu v2 — Sanctum II</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <template id="__bundler_thumbnail" data-bg-color="#0a0a14">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="bg" cx="50%" cy="45%" r="55%">
+          <stop offset="0%" stop-color="#1c1a35"/>
+          <stop offset="100%" stop-color="#0a0a14"/>
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="800" fill="url(#bg)"/>
+      <!-- tiny scattered stars -->
+      <g fill="#f0ecf7">
+        <circle cx="180" cy="160" r="1.4" opacity="0.7"/>
+        <circle cx="340" cy="240" r="0.8" opacity="0.5"/>
+        <circle cx="900" cy="180" r="1.2" opacity="0.6"/>
+        <circle cx="1050" cy="320" r="0.9" opacity="0.5"/>
+        <circle cx="240" cy="620" r="1.1" opacity="0.6"/>
+        <circle cx="960" cy="640" r="0.9" opacity="0.5"/>
+        <circle cx="620" cy="120" r="0.8" opacity="0.4"/>
+        <circle cx="120" cy="440" r="0.8" opacity="0.4"/>
+      </g>
+      <!-- gold crosshair stars -->
+      <g stroke="#f5c842" stroke-width="0.6" opacity="0.7">
+        <line x1="296" y1="400" x2="304" y2="400"/>
+        <line x1="300" y1="396" x2="300" y2="404"/>
+        <line x1="896" y1="500" x2="904" y2="500"/>
+        <line x1="900" y1="496" x2="900" y2="504"/>
+      </g>
+      <!-- central compass rose / orb -->
+      <g transform="translate(600 400)">
+        <circle r="220" fill="none" stroke="#9b8aff" stroke-width="0.6" opacity="0.35"/>
+        <circle r="170" fill="none" stroke="#9b8aff" stroke-width="0.8" opacity="0.5"/>
+        <circle r="120" fill="none" stroke="#f5c842" stroke-width="0.6" opacity="0.5"/>
+        <g stroke="#f5c842" stroke-width="0.8" opacity="0.7">
+          <line x1="0" y1="-200" x2="0" y2="200"/>
+          <line x1="-200" y1="0" x2="200" y2="0"/>
+          <line x1="-141" y1="-141" x2="141" y2="141" opacity="0.4"/>
+          <line x1="141" y1="-141" x2="-141" y2="141" opacity="0.4"/>
+        </g>
+        <polygon points="0,-180 8,0 -8,0" fill="#f5c842" opacity="0.9"/>
+        <polygon points="0,180 8,0 -8,0" fill="#f5c842" opacity="0.5"/>
+        <circle r="60" fill="#15142a" stroke="#9b8aff" stroke-width="1"/>
+        <circle r="14" fill="#9b8aff"/>
+        <circle r="6" fill="#f5c842"/>
+      </g>
+      <!-- wordmark -->
+      <g text-anchor="middle" font-family="Georgia, serif">
+        <text x="600" y="720" fill="#f0ecf7" font-size="48" letter-spacing="14" font-weight="600">PANGU</text>
+        <text x="600" y="752" fill="#f5c842" font-size="13" letter-spacing="10">SANCTUM · II</text>
+      </g>
+    </svg>
+  </template>
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="pages.css">
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="data.jsx"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="shell.jsx"></script>
+  <script type="text/babel" src="widgets.jsx"></script>
+  <script type="text/babel" src="pages-1.jsx"></script>
+  <script type="text/babel" src="pages-2.jsx"></script>
+  <script type="text/babel" src="pages-dashboard.jsx"></script>
+  <script type="text/babel" src="app.jsx"></script>
+</body>
+</html>

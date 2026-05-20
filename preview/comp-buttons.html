@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:32px; background:var(--void); color:var(--ink); font-family:var(--font-body); }
+  .group { display:flex; flex-wrap:wrap; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--hairline); }
+  .group:last-child { border-bottom: none; }
+  .label { width: 130px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap: 8px; padding: 11px 20px; border-radius: 8px; font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; border: 1px solid transparent; cursor:pointer; transition: all 180ms cubic-bezier(.2,.7,.2,1); }
+  .btn-primary { background: #9b8aff; color: #0a0a14; box-shadow: 0 4px 20px rgba(155,138,255,0.35), inset 0 1px 0 rgba(255,255,255,.2); }
+  .btn-gold    { background: #f5c842; color: #0a0a14; box-shadow: 0 4px 20px rgba(245,200,66,0.3), inset 0 1px 0 rgba(255,255,255,.25); }
+  .btn-ghost   { background: transparent; color: #c8c2dc; border-color: rgba(155,138,255,.14); }
+  .btn-violet-soft { background: rgba(155,138,255,.08); color: #9b8aff; border-color: rgba(155,138,255,.25); }
+  .btn-lg { padding: 14px 28px; font-size: 13px; }
+  .btn-sm { padding: 7px 14px; font-size: 11px; letter-spacing: 0.16em; }
+  .ic { width: 13px; height: 13px; }
+</style></head>
+<body>
+  <div class="group"><div class="label">Primary</div>
+    <button class="btn btn-primary btn-sm">Save</button>
+    <button class="btn btn-primary">Run Session</button>
+    <button class="btn btn-primary btn-lg"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 4v16l13-8z" fill="currentColor"/></svg> Resume Session</button>
+  </div>
+  <div class="group"><div class="label">Gold · ceremony</div>
+    <button class="btn btn-gold btn-sm">Forge</button>
+    <button class="btn btn-gold">Lore Forge</button>
+    <button class="btn btn-gold btn-lg">Conjure New Beast</button>
+  </div>
+  <div class="group"><div class="label">Ghost</div>
+    <button class="btn btn-ghost btn-sm">Cancel</button>
+    <button class="btn btn-ghost">Open Chronicle</button>
+    <button class="btn btn-ghost btn-lg">Edit Pact</button>
+  </div>
+  <div class="group"><div class="label">Violet soft</div>
+    <button class="btn btn-violet-soft btn-sm">Add Hero</button>
+    <button class="btn btn-violet-soft">AI Chronicle</button>
+    <button class="btn btn-violet-soft btn-lg">Expand with AI</button>
+  </div>
+</body></html>

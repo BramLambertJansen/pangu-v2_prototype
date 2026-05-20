@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:28px; background:var(--void); color:var(--ink); font-family:var(--font-body); }
+  .row { display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px; align-items: start; }
+
+  /* Campaign card */
+  .campaign-card { background: #15142a; border: 1px solid rgba(155,138,255,.14); border-radius: 16px; overflow: hidden; }
+  .campaign-card-art { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+  .campaign-card-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(15,14,28,0.85) 100%); }
+  .campaign-card-stamp { position: absolute; bottom: 16px; left: 16px; text-align: center; background: rgba(15,14,28,0.8); border: 1px solid rgba(155,138,255,.14); border-radius: 4px; padding: 10px 14px; }
+  .campaign-card-roman { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: #f5c842; line-height: 1; }
+  .campaign-card-body { padding: 20px; }
+  .placeholder-img { position: absolute; inset: 0; background: linear-gradient(135deg, #1c1a35 0%, #252243 100%); display: flex; align-items: center; justify-content: center; }
+  .placeholder-img::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(155,138,255,0.15) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(245,200,66,0.08) 0%, transparent 50%); }
+  .ph-glyph { position: relative; font-family: var(--font-display); font-size: 64px; color: rgba(155,138,255,0.30); }
+  .stars { position: absolute; inset: 0; }
+  .bar { height: 4px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; margin-top: 16px; }
+  .bar-fill { height: 100%; background: linear-gradient(90deg, #9b8aff, #f5c842); width: 44%; }
+  .b-violet { background: rgba(155,138,255,.12); color: #9b8aff; border: 1px solid rgba(155,138,255,.3); padding: 3px 9px; border-radius: 9999px; font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; display: inline-flex; }
+  .b-solid-gold { background: #f5c842; color: #0a0a14; padding: 3px 9px; border-radius: 9999px; font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; display: inline-flex; position: absolute; top: 14px; right: 14px; }
+
+  /* Continue card */
+  .continue { background: linear-gradient(135deg, #15142a, #1c1a35); border: 1px solid rgba(155,138,255,.28); border-radius: 16px; padding: 24px; position: relative; overflow: hidden; }
+  .continue::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #9b8aff, #f5c842); }
+</style></head>
+<body>
+  <div class="row">
+    <div class="campaign-card">
+      <div class="campaign-card-art">
+        <div class="placeholder-img"><div class="ph-glyph">P</div></div>
+        <svg class="stars" viewBox="0 0 200 120" preserveAspectRatio="none" aria-hidden="true">
+          <circle cx="40" cy="20" r="0.6" fill="#e8e4f0" opacity=".7"/>
+          <circle cx="160" cy="30" r="0.5" fill="#e8e4f0" opacity=".5"/>
+          <circle cx="120" cy="80" r="0.5" fill="#e8e4f0" opacity=".6"/>
+          <circle cx="60" cy="90" r="0.7" fill="#e8e4f0" opacity=".5"/>
+          <g stroke="#f5c842" stroke-width=".3" opacity=".7"><line x1="180" y1="58" x2="184" y2="58"/><line x1="182" y1="56" x2="182" y2="60"/></g>
+        </svg>
+        <div class="campaign-card-overlay"></div>
+        <div class="campaign-card-stamp">
+          <div class="campaign-card-roman">IV</div>
+          <div style="font-size: 9px; letter-spacing: 0.18em; color: #f5c842; margin-top: 4px;">CHAPTER</div>
+        </div>
+        <span class="b-solid-gold">active</span>
+      </div>
+      <div class="campaign-card-body">
+        <div class="eyebrow eyebrow-violet" style="font-size:10px">Sword Coast · D&amp;D 5e</div>
+        <h3 class="display" style="font-size: 22px; margin-top: 8px; margin-bottom: 4px;">The Lost Mines</h3>
+        <p class="quote" style="font-size: 14px;">"A pact carved in dwarven stone"</p>
+        <div class="bar"><div class="bar-fill"></div></div>
+      </div>
+    </div>
+
+    <div class="continue">
+      <div style="display:flex; align-items:center; gap: 12px;"><span class="b-violet" style="background:rgba(62,207,178,.12); color:#3ecfb2; border-color:rgba(62,207,178,.3)">● WHERE WE LEFT OFF</span><span style="font-size:11px; color:var(--muted)">Tuesday past</span></div>
+      <h3 class="display" style="font-size: 26px; margin-top: 14px;">Cragmaw Castle</h3>
+      <div class="kicker" style="font-size:11px; margin-top: 6px;">CHAPTER IV · THE SPIDER'S WEB</div>
+      <p class="quote" style="margin-top: 16px;">"Lyria identified the glow on the recovered map as moonlit rune-keys of pre-Sundering make."</p>
+      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 14px 0; border-top: 1px solid rgba(155,138,255,.14); border-bottom: 1px solid rgba(155,138,255,.14); margin-top: 18px;">
+        <div><div class="micro">Sessions</div><div class="heading" style="margin-top:4px">12</div></div>
+        <div><div class="micro">Playtime</div><div class="heading" style="margin-top:4px">46h</div></div>
+        <div><div class="micro">Party</div><div class="heading" style="margin-top:4px">4</div></div>
+        <div><div class="micro">Next</div><div class="heading" style="margin-top:4px; color:#f5c842; font-size:13px;">Sun · 7:30</div></div>
+      </div>
+    </div>
+  </div>
+</body></html>

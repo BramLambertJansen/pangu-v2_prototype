@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:28px; background:var(--void); color:var(--ink); font-family:var(--font-body); }
+  .row { display:flex; flex-direction: column; gap: 18px; }
+  label.label { display:block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #f5c842; margin-bottom: 8px; }
+  .input { display:block; width: 100%; padding: 11px 14px; background: #0f0e1c; border: 1px solid rgba(155,138,255,.14); border-radius: 8px; color: var(--ink); font: inherit; font-size: 14px; outline: none; transition: border-color 180ms, box-shadow 180ms; }
+  .input.focused { border-color: #9b8aff; box-shadow: 0 0 0 3px rgba(155,138,255,0.15); }
+  .textarea { display:block; width:100%; padding: 11px 14px; background: #0f0e1c; border: 1px solid rgba(155,138,255,.14); border-radius: 8px; color: var(--ink); font: inherit; font-size: 14px; min-height: 90px; resize: vertical; line-height: 1.6; font-family: var(--font-quote); font-style: italic; }
+  .tab-bar { display:flex; gap:2px; padding:4px; background: #0f0e1c; border: 1px solid rgba(155,138,255,.14); border-radius: 8px; max-width: 460px; }
+  .tab { flex: 1; padding: 10px 18px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); background: none; border: none; cursor: pointer; }
+  .tab.is-selected { background: #9b8aff; color: #0a0a14; }
+</style></head>
+<body>
+  <div class="row">
+    <div>
+      <label class="label">Name</label>
+      <input class="input focused" value="The Lost Mines of Phandelver"/>
+    </div>
+    <div>
+      <label class="label">Pact · short motto</label>
+      <input class="input" value="A pact carved in dwarven stone"/>
+    </div>
+    <div>
+      <label class="label">Forge new lore</label>
+      <textarea class="textarea">"A rumour the bartender tells when the candles burn low…"</textarea>
+    </div>
+    <div>
+      <label class="label">Tabs</label>
+      <div class="tab-bar">
+        <button class="tab is-selected">Story Arc</button>
+        <button class="tab">Party</button>
+        <button class="tab">World</button>
+        <button class="tab">NPCs</button>
+      </div>
+    </div>
+  </div>
+</body></html>

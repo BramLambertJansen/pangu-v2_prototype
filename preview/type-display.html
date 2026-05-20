@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:32px; background:var(--void); color:var(--ink); font-family:var(--font-body); }
+  .grid { display:grid; gap:20px; align-items:start; }
+  .row { display:grid; grid-template-columns: 130px 1fr; gap: 28px; align-items:baseline; padding: 14px 0; border-bottom: 1px solid var(--hairline); }
+  .row:last-child { border-bottom: none; }
+  .row .lab { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase; padding-top: 8px; }
+  .row .sample { line-height: 1; }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="row">
+      <div class="lab">Display XL · Cinzel 96/0.95 · uppercase 0.02em</div>
+      <div class="sample display-xl" style="text-transform:uppercase">Pangu</div>
+    </div>
+    <div class="row">
+      <div class="lab">Display LG · Cinzel 56/1.05 · 0.04em</div>
+      <div class="sample display-lg" style="text-transform:uppercase">The Lost Mines</div>
+    </div>
+    <div class="row">
+      <div class="lab">Display · Cinzel 40/1.15 · 0.035em</div>
+      <div class="sample display">Where shall we wander?</div>
+    </div>
+    <div class="row">
+      <div class="lab">Title · Cinzel 20 · 0.06em</div>
+      <div class="sample title">Chapter Four · The Spider's Web</div>
+    </div>
+  </div>
+</body></html>
