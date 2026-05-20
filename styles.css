@@ -241,25 +241,25 @@ img { display: block; max-width: 100%; }
 .surface {
   background: var(--surface);
   border: 1px solid var(--hairline);
-  border-radius: var(--r);
+  border-radius: var(--r-md);
 }
 
 .surface-2 {
   background: var(--surface-2);
   border: 1px solid var(--hairline);
-  border-radius: var(--r);
+  border-radius: var(--r-md);
 }
 
 .surface-void {
   background: var(--void-2);
   border: 1px solid var(--hairline);
-  border-radius: var(--r);
+  border-radius: var(--r-md);
 }
 
 .surface-glow {
   background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
   border: 1px solid var(--hairline-strong);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   box-shadow: var(--shadow-2), inset 0 1px 0 rgba(255,255,255,0.03);
 }
 
@@ -505,7 +505,7 @@ img { display: block; max-width: 100%; }
   width: 100%; max-width: 540px;
   background: var(--surface);
   border: 1px solid var(--hairline-strong);
-  border-radius: var(--r-md);
+  border-radius: var(--r-xl);
   box-shadow: var(--shadow-3), 0 0 60px var(--violet-glow);
   overflow: hidden;
 }
