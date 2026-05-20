@@ -199,41 +199,28 @@ function WorldCard({ world, campaigns, onClick, navigate }) {
   const isEmpty = campaigns.length === 0;
   return (
     <div className="world-card" style={{ '--accent': w.accent }}>
-      {/* Full-card CosmicImg banner, absolute background */}
-      <div className="world-card-banner">
-        <CosmicImg glyph={w.glyph} accent={w.accent} style={{ aspectRatio: 'unset', position: 'absolute', inset: 0 }}/>
-      </div>
-      {/* Gradient: art zichtbaar links, surface rechts */}
-      <div className="world-card-overlay"/>
-
-      {/* Linker zone — glyph ring op de art */}
-      <div className="world-card-left clickable" onClick={onClick} aria-label={`Open ${w.name}`}>
-        <div className="world-card-glyph-ring">{w.glyph}</div>
+      {/* Art banner — klikbaar, navigeert naar world detail */}
+      <div className="world-card-art clickable" onClick={onClick}>
+        <CosmicImg glyph={w.glyph} accent={w.accent} ratio="2/1"/>
+        <div className="world-card-art-fade"/>
+        <span className="badge badge-solid-gold world-card-year">{w.yearLabel}</span>
       </div>
 
-      {/* Rechter zone — alle content */}
-      <div className="world-card-right">
-        <div className="world-card-header">
-          <div className="flex items-center gap-2">
-            <div style={{ width: 28, height: 1, background: 'var(--gold)', flexShrink: 0 }}/>
-            <span className="eyebrow eyebrow-violet" style={{ fontSize: 10 }}>{w.eraName}</span>
-          </div>
-          <div style={{ textAlign: 'right' }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-soft)', letterSpacing: '0.06em' }}>{w.yearLabel}</div>
-            <div className="micro" style={{ color: 'var(--muted)', marginTop: 2 }}>{w.lastVisited}</div>
-          </div>
+      {/* Gecentreerde content */}
+      <div className="world-card-body">
+        {/* Eyebrow met gouden lijnen aan beide kanten */}
+        <div className="flex items-center justify-center gap-3" style={{ marginBottom: 12 }}>
+          <div style={{ width: 24, height: 1, background: 'var(--gold)', flexShrink: 0 }}/>
+          <span className="eyebrow eyebrow-violet" style={{ fontSize: 10 }}>{w.eraName}</span>
+          <div style={{ width: 24, height: 1, background: 'var(--gold)', flexShrink: 0 }}/>
         </div>
 
-        <h3
-          className="display clickable"
-          style={{ fontSize: 30, textTransform: 'uppercase', letterSpacing: '0.06em', marginTop: 10, marginBottom: 8 }}
-          onClick={onClick}
-        >{w.name}</h3>
+        <h3 className="display clickable" style={{ fontSize: 28, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }} onClick={onClick}>{w.name}</h3>
 
-        <p className="quote" style={{ fontSize: 14, marginBottom: 10 }}>"{w.motto}"</p>
-        <p className="small" style={{ color: 'var(--ink-soft)', lineHeight: 1.7, marginBottom: 20 }}>{w.description}</p>
+        <p className="quote" style={{ fontSize: 14, marginBottom: 12 }}>"{w.motto}"</p>
+        <p className="small" style={{ color: 'var(--ink-soft)', lineHeight: 1.7, marginBottom: 22 }}>{w.description}</p>
 
-        <div style={{ height: 1, background: 'var(--hairline)', marginBottom: 20 }}/>
+        <div style={{ height: 1, background: 'var(--hairline)', marginBottom: 20, width: '100%' }}/>
 
         {/* Stats */}
         <div className="world-card-stats">
@@ -254,7 +241,7 @@ function WorldCard({ world, campaigns, onClick, navigate }) {
         </div>
 
         {/* Knoppen */}
-        <div className="flex gap-3 mt-6 items-center flex-wrap">
+        <div className="flex gap-3 mt-6 items-center justify-center flex-wrap">
           <button className="btn btn-primary world-card-btn" onClick={e => { e.stopPropagation(); onClick(); }}>
             <Icon name="plus" size={13}/> New Chronicle
           </button>
@@ -266,12 +253,13 @@ function WorldCard({ world, campaigns, onClick, navigate }) {
           </button>
         </div>
 
-        {/* Active Chronicles */}
+        {/* Active Chronicles — links uitgelijnd binnen gecentreerde body */}
         {!isEmpty && (
-          <div className="mt-6">
-            <div className="flex items-center gap-2 mb-3">
-              <div style={{ width: 24, height: 1, background: 'var(--hairline-strong)', flexShrink: 0 }}/>
+          <div className="mt-6" style={{ width: '100%' }}>
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <div style={{ width: 20, height: 1, background: 'var(--hairline-strong)', flexShrink: 0 }}/>
               <span className="eyebrow eyebrow-muted" style={{ fontSize: 10 }}>ACTIVE CHRONICLES</span>
+              <div style={{ width: 20, height: 1, background: 'var(--hairline-strong)', flexShrink: 0 }}/>
             </div>
             {campaigns.slice(0, 3).map(c => (
               <button

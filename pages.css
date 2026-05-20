@@ -801,21 +801,18 @@
 /* ─── Worlds grid ──────────────────────────────────────────── */
 .worlds-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(580px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: var(--sp-6);
 }
 
-/* ─── World card — horizontale banner-layout ───────────────── */
+/* ─── World card — banner top, gecentreerde content ───────── */
 .world-card {
-  position: relative;
-  display: grid;
-  grid-template-columns: 200px minmax(0, 1fr);
-  min-height: 320px;
+  display: flex;
+  flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--hairline);
   border-radius: var(--r-xl);
   overflow: hidden;
-  text-align: left;
   width: 100%;
   transition: border-color 280ms cubic-bezier(.2,.7,.2,1), box-shadow 280ms cubic-bezier(.2,.7,.2,1);
 }
@@ -824,80 +821,37 @@
   box-shadow: 0 24px 56px rgba(0,0,0,0.45), 0 0 40px color-mix(in oklab, var(--accent, var(--violet)) 20%, transparent);
 }
 
-/* CosmicImg als absolute achtergrond over de hele kaart */
-.world-card-banner {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-.world-card-banner .placeholder-img {
-  position: absolute;
-  inset: 0;
-  aspect-ratio: unset !important;
+/* Art banner bovenaan */
+.world-card-art {
+  position: relative;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 2/1;
+  overflow: hidden;
+  cursor: pointer;
 }
-
-/* Gradiënt: art zichtbaar links, surface opaque rechts */
-.world-card-overlay {
+.world-card-art-fade {
   position: absolute;
   inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    100deg,
-    rgba(10,10,20,0.30) 0%,
-    rgba(15,14,28,0.82) 32%,
-    var(--surface) 54%
-  );
+  background: linear-gradient(180deg, transparent 30%, var(--surface) 100%);
+  pointer-events: none;
+}
+.world-card-year {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
   pointer-events: none;
 }
 
-/* Linker zone — glyph ring gecentreerd op de art */
-.world-card-left {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.world-card-left:hover .world-card-glyph-ring {
-  border-color: var(--accent, var(--violet));
-  box-shadow: 0 0 24px color-mix(in oklab, var(--accent, var(--violet)) 40%, transparent);
-}
-
-.world-card-glyph-ring {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 2px solid color-mix(in oklab, var(--accent, var(--violet)) 70%, transparent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 40px;
-  letter-spacing: 0.08em;
-  color: var(--ink);
-  background: rgba(10,10,20,0.4);
-  backdrop-filter: blur(6px);
-  transition: border-color 220ms, box-shadow 220ms;
-}
-
-/* Rechter zone — content op opaque surface */
-.world-card-right {
-  position: relative;
-  z-index: 2;
-  padding: 26px 28px 28px 0;
+/* Gecentreerde content */
+.world-card-body {
+  padding: 20px 28px 28px;
   display: flex;
   flex-direction: column;
-}
-
-.world-card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 2px;
+  align-items: center;
+  text-align: center;
 }
 
 .world-card-stats {
@@ -965,12 +919,6 @@
 
 @media (max-width: 720px) {
   .worlds-grid { grid-template-columns: 1fr; }
-  .world-card { grid-template-columns: 1fr; }
-  .world-card-left { min-height: 140px; }
-  .world-card-overlay {
-    background: linear-gradient(180deg, rgba(10,10,20,0.30) 0%, var(--surface) 55%);
-  }
-  .world-card-right { padding: 20px 20px 24px; }
 }
 
 /* Bullet chip — small dot before label, color-keyed */
