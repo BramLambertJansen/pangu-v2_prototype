@@ -220,26 +220,6 @@ function WorldCard({ world, campaigns, onClick, navigate }) {
         <p className="quote" style={{ fontSize: 14, marginBottom: 12 }}>"{w.motto}"</p>
         <p className="small" style={{ color: 'var(--ink-soft)', lineHeight: 1.7, marginBottom: 22 }}>{w.description}</p>
 
-        <div style={{ height: 1, background: 'var(--hairline)', marginBottom: 20, width: '100%' }}/>
-
-        {/* Stats */}
-        <div className="world-card-stats">
-          <div className="world-card-stat">
-            <div className="font-display" style={{ fontSize: 26, lineHeight: 1 }}>{campaigns.length}</div>
-            <div className="micro mt-2">CHRONICLES</div>
-          </div>
-          <div className="world-card-stat-sep"/>
-          <div className="world-card-stat">
-            <div className="font-display" style={{ fontSize: 26, lineHeight: 1 }}>{w.locations}</div>
-            <div className="micro mt-2">LOCATIONS</div>
-          </div>
-          <div className="world-card-stat-sep"/>
-          <div className="world-card-stat">
-            <div className="font-display" style={{ fontSize: 26, lineHeight: 1 }}>{w.npcs}</div>
-            <div className="micro mt-2">LIVING CAST</div>
-          </div>
-        </div>
-
         {/* Active Chronicles — links uitgelijnd binnen gecentreerde body */}
         {!isEmpty && (
           <div className="mt-6" style={{ width: '100%' }}>
