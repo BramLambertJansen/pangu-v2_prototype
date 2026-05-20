@@ -198,54 +198,62 @@ function WorldCard({ world, campaigns, onClick, navigate }) {
   const w = world;
   const isEmpty = campaigns.length === 0;
   return (
-    <div className="world-card" style={{ '--accent': w.accent, '--accent-2': w.secondary }}>
-      {/* Art — click navigates to world detail */}
-      <div className="world-card-art clickable" onClick={onClick}>
-        <CosmicImg glyph={w.glyph} accent={w.accent} ratio="16/9"/>
-        <span className="badge badge-solid-gold world-card-year">{w.yearLabel}</span>
+    <div className="world-card" style={{ '--accent': w.accent }}>
+      {/* Full-card CosmicImg banner, absolute background */}
+      <div className="world-card-banner">
+        <CosmicImg glyph={w.glyph} accent={w.accent} style={{ aspectRatio: 'unset', position: 'absolute', inset: 0 }}/>
+      </div>
+      {/* Gradient: art zichtbaar links, surface rechts */}
+      <div className="world-card-overlay"/>
+
+      {/* Linker zone — glyph ring op de art */}
+      <div className="world-card-left clickable" onClick={onClick} aria-label={`Open ${w.name}`}>
+        <div className="world-card-glyph-ring">{w.glyph}</div>
       </div>
 
-      <div className="world-card-body">
-        {/* Eyebrow row */}
-        <div className="flex items-center justify-between" style={{ marginBottom: 10 }}>
+      {/* Rechter zone — alle content */}
+      <div className="world-card-right">
+        <div className="world-card-header">
           <div className="flex items-center gap-2">
             <div style={{ width: 28, height: 1, background: 'var(--gold)', flexShrink: 0 }}/>
-            <span className="eyebrow eyebrow-violet" style={{ fontSize: 11 }}>{w.eraName}</span>
+            <span className="eyebrow eyebrow-violet" style={{ fontSize: 10 }}>{w.eraName}</span>
           </div>
-          <span className="micro" style={{ color: 'var(--muted)' }}>{w.lastVisited}</span>
+          <div style={{ textAlign: 'right' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-soft)', letterSpacing: '0.06em' }}>{w.yearLabel}</div>
+            <div className="micro" style={{ color: 'var(--muted)', marginTop: 2 }}>{w.lastVisited}</div>
+          </div>
         </div>
 
-        {/* Title */}
-        <h3 className="display clickable" style={{ fontSize: 28, marginBottom: 8 }} onClick={onClick}>{w.name}</h3>
+        <h3
+          className="display clickable"
+          style={{ fontSize: 30, textTransform: 'uppercase', letterSpacing: '0.06em', marginTop: 10, marginBottom: 8 }}
+          onClick={onClick}
+        >{w.name}</h3>
 
-        {/* Motto */}
-        <p className="quote" style={{ fontSize: 14, marginBottom: 12 }}>"{w.motto}"</p>
+        <p className="quote" style={{ fontSize: 14, marginBottom: 10 }}>"{w.motto}"</p>
+        <p className="small" style={{ color: 'var(--ink-soft)', lineHeight: 1.7, marginBottom: 20 }}>{w.description}</p>
 
-        {/* Description */}
-        <p className="small" style={{ color: 'var(--ink-soft)', marginBottom: 20, lineHeight: 1.7 }}>{w.description}</p>
-
-        {/* Divider */}
         <div style={{ height: 1, background: 'var(--hairline)', marginBottom: 20 }}/>
 
         {/* Stats */}
         <div className="world-card-stats">
           <div className="world-card-stat">
-            <div className="font-display" style={{ fontSize: 26, color: 'var(--ink)', lineHeight: 1 }}>{campaigns.length}</div>
+            <div className="font-display" style={{ fontSize: 26, lineHeight: 1 }}>{campaigns.length}</div>
             <div className="micro mt-2">CHRONICLES</div>
           </div>
           <div className="world-card-stat-sep"/>
           <div className="world-card-stat">
-            <div className="font-display" style={{ fontSize: 26, color: 'var(--ink)', lineHeight: 1 }}>{w.locations}</div>
+            <div className="font-display" style={{ fontSize: 26, lineHeight: 1 }}>{w.locations}</div>
             <div className="micro mt-2">LOCATIONS</div>
           </div>
           <div className="world-card-stat-sep"/>
           <div className="world-card-stat">
-            <div className="font-display" style={{ fontSize: 26, color: 'var(--ink)', lineHeight: 1 }}>{w.npcs}</div>
+            <div className="font-display" style={{ fontSize: 26, lineHeight: 1 }}>{w.npcs}</div>
             <div className="micro mt-2">LIVING CAST</div>
           </div>
         </div>
 
-        {/* Actions */}
+        {/* Knoppen */}
         <div className="flex gap-3 mt-6 items-center flex-wrap">
           <button className="btn btn-primary world-card-btn" onClick={e => { e.stopPropagation(); onClick(); }}>
             <Icon name="plus" size={13}/> New Chronicle
@@ -265,19 +273,17 @@ function WorldCard({ world, campaigns, onClick, navigate }) {
               <div style={{ width: 24, height: 1, background: 'var(--hairline-strong)', flexShrink: 0 }}/>
               <span className="eyebrow eyebrow-muted" style={{ fontSize: 10 }}>ACTIVE CHRONICLES</span>
             </div>
-            <div>
-              {campaigns.slice(0, 3).map(c => (
-                <button
-                  key={c.id}
-                  className="world-card-chronicle-row clickable"
-                  onClick={e => { e.stopPropagation(); navigate ? navigate(`/campaign/${c.id}`) : onClick(); }}
-                >
-                  <span className="world-card-chronicle-dot" style={{ background: c.accent }}/>
-                  <span className="world-card-chronicle-name">{c.name}</span>
-                  <Icon name="chevron-right" size={14}/>
-                </button>
-              ))}
-            </div>
+            {campaigns.slice(0, 3).map(c => (
+              <button
+                key={c.id}
+                className="world-card-chronicle-row clickable"
+                onClick={e => { e.stopPropagation(); navigate ? navigate(`/campaign/${c.id}`) : onClick(); }}
+              >
+                <span className="world-card-chronicle-dot" style={{ background: c.accent }}/>
+                <span className="world-card-chronicle-name">{c.name}</span>
+                <Icon name="chevron-right" size={14}/>
+              </button>
+            ))}
           </div>
         )}
 
