@@ -721,7 +721,7 @@ function crFromColor(cr) {
 // ════════════════════════════════════════════════════════════════════
 //  SETTINGS
 // ════════════════════════════════════════════════════════════════════
-function SettingsPage() {
+function SettingsPage({ navigate }) {
   const [tab, setTab] = useStateP2('profile');
   const [notif, setNotif] = useStateP2(true);
   const [sounds, setSounds] = useStateP2(true);
@@ -770,9 +770,19 @@ function SettingsPage() {
             </div>
           </div>
 
-          <div className="flex justify-end gap-3 mt-6">
-            <button className="btn btn-ghost">Cancel</button>
-            <button className="btn btn-primary">Save</button>
+          <div className="flex justify-between gap-3 mt-6">
+            <button
+              className="btn btn-ghost"
+              style={{ color: 'var(--crimson)', borderColor: 'rgba(255,107,107,0.25)' }}
+              onClick={() => navigate && navigate('/login')}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ marginRight: 4 }}><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              Uitloggen
+            </button>
+            <div className="flex gap-3">
+              <button className="btn btn-ghost">Cancel</button>
+              <button className="btn btn-primary">Save</button>
+            </div>
           </div>
         </div>
       )}

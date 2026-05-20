@@ -27,6 +27,8 @@ function useHashRoute() {
 }
 
 function matchRoute(route) {
+  if (route === '/login') return { name: 'login', params: {} };
+  if (route === '/register') return { name: 'register', params: {} };
   if (route === '/' || route === '') return { name: 'dashboard', params: {} };
   let m;
   if ((m = route.match(/^\/campaign\/([^/]+)$/))) return { name: 'campaign-detail', params: { id: m[1] } };
@@ -73,6 +75,24 @@ function App() {
     root.setAttribute('data-uppercase', t.uppercaseDisplay ? 'on' : 'off');
   }, [t.accent, t.density, t.grain, t.uppercaseDisplay]);
 
+  // Auth-only routes render without nav shell
+  if (matched.name === 'login') {
+    return (
+      <>
+        <LoginPage navigate={navigate} />
+        <PanguTweaks t={t} setTweak={setTweak}/>
+      </>
+    );
+  }
+  if (matched.name === 'register') {
+    return (
+      <>
+        <RegisterPage navigate={navigate} />
+        <PanguTweaks t={t} setTweak={setTweak}/>
+      </>
+    );
+  }
+
   let page;
   switch (matched.name) {
     case 'dashboard': page = <Dashboard navigate={navigate} />; break;
@@ -86,7 +106,7 @@ function App() {
     case 'character-detail': page = <CharacterDetail navigate={navigate} params={matched.params} />; break;
     case 'world': page = <WorldPage navigate={navigate} />; break;
     case 'bestiary': page = <Bestiary navigate={navigate} />; break;
-    case 'settings': page = <SettingsPage />; break;
+    case 'settings': page = <SettingsPage navigate={navigate} />; break;
     default: page = <Dashboard navigate={navigate} />;
   }
 
