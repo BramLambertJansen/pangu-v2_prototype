@@ -240,19 +240,6 @@ function WorldCard({ world, campaigns, onClick, navigate }) {
           </div>
         </div>
 
-        {/* Knoppen */}
-        <div className="flex gap-3 mt-6 items-center justify-center flex-wrap">
-          <button className="btn btn-primary world-card-btn" onClick={e => { e.stopPropagation(); onClick(); }}>
-            <Icon name="plus" size={13}/> New Chronicle
-          </button>
-          <button className="btn btn-ghost world-card-btn world-card-lore-btn" onClick={e => e.stopPropagation()}>
-            <Icon name="sparkles" size={13} style={{ color: 'var(--gold)' }}/> Lore Forge
-          </button>
-          <button className="btn btn-ghost world-card-edit-btn" aria-label="Edit world" onClick={e => e.stopPropagation()}>
-            <Icon name="edit" size={15}/>
-          </button>
-        </div>
-
         {/* Active Chronicles — links uitgelijnd binnen gecentreerde body */}
         {!isEmpty && (
           <div className="mt-6" style={{ width: '100%' }}>
