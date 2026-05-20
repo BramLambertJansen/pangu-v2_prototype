@@ -960,6 +960,106 @@
   .world-hero-meta { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* ─── World detail card ────────────────────────────────────── */
+.world-detail-card {
+  background: var(--surface);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.world-detail-art {
+  position: relative;
+  width: 100%;
+}
+.world-detail-art .placeholder-img {
+  width: 100%;
+  display: block;
+}
+
+.world-detail-year {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  border-radius: var(--r-full);
+  padding: 5px 12px;
+}
+
+.world-detail-body {
+  padding: 28px 28px 32px;
+}
+
+.world-detail-stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.world-detail-stat {
+  flex: 1;
+  text-align: center;
+  padding: 4px 0;
+}
+.world-detail-stat-sep {
+  width: 1px;
+  height: 44px;
+  background: var(--hairline-strong);
+  flex-shrink: 0;
+}
+
+.world-detail-lore-btn {
+  background: var(--surface-2);
+  border-color: var(--hairline-strong);
+}
+.world-detail-lore-btn:hover {
+  background: var(--surface-3);
+}
+
+.world-detail-edit-btn {
+  padding: 10px 14px;
+  background: var(--surface-2);
+  border-color: var(--hairline);
+}
+
+.world-detail-chronicle-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hairline);
+  text-align: left;
+  color: var(--ink-soft);
+  font-size: 15px;
+  transition: color 160ms;
+  background: transparent;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-radius: 0;
+  width: 100%;
+}
+.world-detail-chronicle-row:first-child { border-top: 1px solid var(--hairline); }
+.world-detail-chronicle-row:hover { color: var(--ink); }
+.world-detail-chronicle-row:hover .world-detail-chronicle-dot {
+  box-shadow: 0 0 8px var(--accent, currentColor);
+}
+
+.world-detail-chronicle-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  transition: box-shadow 160ms;
+}
+.world-detail-chronicle-name {
+  flex: 1;
+  font-family: var(--font-body);
+}
+
 /* ─── Chronicle row ────────────────────────────────────────── */
 .dash-chronicle-grid {
   display: grid;
