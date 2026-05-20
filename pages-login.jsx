@@ -2,7 +2,6 @@
 
 const { useState: useLoginState } = React;
 
-// ─── SSO provider button ────────────────────────────────────────────
 function SsoButton({ icon, label, onClick }) {
   return (
     <button className="sso-btn" onClick={onClick} type="button">
@@ -12,7 +11,6 @@ function SsoButton({ icon, label, onClick }) {
   );
 }
 
-// ─── Eye toggle icon ────────────────────────────────────────────────
 function EyeIcon({ visible }) {
   if (visible) {
     return (
@@ -31,7 +29,6 @@ function EyeIcon({ visible }) {
   );
 }
 
-// ─── Google G mark ───────────────────────────────────────────────────
 function GoogleIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
@@ -43,7 +40,6 @@ function GoogleIcon() {
   );
 }
 
-// ─── Discord mark ───────────────────────────────────────────────────
 function DiscordIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="#5865F2" aria-hidden="true">
@@ -52,193 +48,6 @@ function DiscordIcon() {
   );
 }
 
-// ─── Register page ───────────────────────────────────────────────────
-function RegisterPage({ navigate }) {
-  const [email, setEmail] = useLoginState('');
-  const [password, setPassword] = useLoginState('');
-  const [confirm, setConfirm] = useLoginState('');
-  const [name, setName] = useLoginState('');
-  const [showPw, setShowPw] = useLoginState(false);
-  const [loading, setLoading] = useLoginState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      navigate('/');
-    }, 900);
-  };
-
-  return (
-    <div className="login-root">
-      <div className="starfield-bg" style={{ position: 'fixed' }}/>
-      <Starfield density="subtle"/>
-      <div className="grain" style={{ position: 'fixed' }}/>
-
-      {/* Brand aside */}
-      <aside className="login-brand" aria-hidden="true">
-        <LoginBrandContent />
-      </aside>
-
-      {/* Form panel */}
-      <main className="login-panel">
-        <div className="login-card">
-          {/* Mobile logo */}
-          <div className="login-mobile-logo">
-            <LoginLogo />
-          </div>
-
-          <div className="login-card-head">
-            <div className="flex items-center gap-3 mb-4">
-              <div style={{ height: 1, width: 28, background: 'var(--gold)' }}/>
-              <span className="eyebrow">Begin uw reis</span>
-            </div>
-            <h1 className="display" style={{ fontSize: 28 }}>Schep een Pact</h1>
-            <p className="body mt-2">Registreer uw profiel en betreed het sanctum.</p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="login-form" noValidate>
-            <div className="login-field">
-              <label className="label" htmlFor="reg-name">Naam</label>
-              <div className="login-input-wrap">
-                <svg className="login-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-                <input
-                  id="reg-name"
-                  type="text"
-                  className="input input-lg"
-                  placeholder="Uw naam of alias"
-                  value={name}
-                  onChange={e => setName(e.target.value)}
-                  autoComplete="name"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="login-field">
-              <label className="label" htmlFor="reg-email">E-mailadres</label>
-              <div className="login-input-wrap">
-                <svg className="login-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 8l10 6 10-6"/></svg>
-                <input
-                  id="reg-email"
-                  type="email"
-                  className="input input-lg"
-                  placeholder="naam@domein.nl"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  autoComplete="email"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="login-field">
-              <label className="label" htmlFor="reg-password">Wachtwoord</label>
-              <div className="login-input-wrap">
-                <svg className="login-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-                <input
-                  id="reg-password"
-                  type={showPw ? 'text' : 'password'}
-                  className="input input-lg"
-                  placeholder="Kies een sterk wachtwoord"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  autoComplete="new-password"
-                  required
-                />
-                <button
-                  type="button"
-                  className="login-pw-toggle"
-                  onClick={() => setShowPw(!showPw)}
-                  aria-label={showPw ? 'Verberg wachtwoord' : 'Toon wachtwoord'}
-                >
-                  <EyeIcon visible={showPw} />
-                </button>
-              </div>
-            </div>
-
-            <div className="login-field">
-              <label className="label" htmlFor="reg-confirm">Bevestig wachtwoord</label>
-              <div className="login-input-wrap">
-                <svg className="login-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 12l5 5 11-12"/></svg>
-                <input
-                  id="reg-confirm"
-                  type={showPw ? 'text' : 'password'}
-                  className="input input-lg"
-                  placeholder="Herhaal uw wachtwoord"
-                  value={confirm}
-                  onChange={e => setConfirm(e.target.value)}
-                  autoComplete="new-password"
-                  required
-                />
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              className="btn btn-primary btn-lg w-full login-submit-btn"
-              disabled={loading}
-            >
-              {loading ? (
-                <span className="login-spinner" aria-hidden="true"/>
-              ) : (
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
-              )}
-              {loading ? 'Een pact smeden…' : 'Smeed het Pact'}
-            </button>
-          </form>
-
-          <div className="login-footer">
-            <span className="small">Reeds ingeschreven?</span>
-            <button
-              className="login-link"
-              onClick={() => navigate('/login')}
-              type="button"
-            >
-              Meld u aan
-            </button>
-          </div>
-        </div>
-      </main>
-    </div>
-  );
-}
-
-// ─── Shared brand sidebar content ────────────────────────────────────
-function LoginBrandContent() {
-  return (
-    <>
-      <div className="login-brand-inner">
-        <LoginLogo />
-
-        <div className="login-brand-text">
-          <p className="login-brand-motto">
-            "Waar verhalen worden gesmeed<br/>en werelden ontwaken."
-          </p>
-          <div style={{ height: 1, width: 48, background: 'linear-gradient(90deg, var(--gold), transparent)', marginTop: 24 }}/>
-        </div>
-
-        <div className="login-brand-features">
-          {[
-            { icon: '✦', text: 'Levende werelden met AI-gegenereerde lore' },
-            { icon: '✦', text: 'Combat tracker, quests en NPC-beheer' },
-            { icon: '✦', text: 'Offline beschikbaar als progressieve web-app' },
-          ].map((f, i) => (
-            <div key={i} className="login-brand-feature">
-              <span className="login-brand-feature-icon">{f.icon}</span>
-              <span className="small" style={{ color: 'var(--ink-soft)' }}>{f.text}</span>
-            </div>
-          ))}
-        </div>
-
-        <ConstellationDecor />
-      </div>
-    </>
-  );
-}
-
-// ─── Logo mark + wordmark ─────────────────────────────────────────────
 function LoginLogo() {
   return (
     <div className="login-logo">
@@ -259,47 +68,6 @@ function LoginLogo() {
   );
 }
 
-// ─── Decorative constellation in brand panel ──────────────────────────
-function ConstellationDecor() {
-  return (
-    <svg className="login-constellation" viewBox="0 0 260 260" aria-hidden="true">
-      <defs>
-        <radialGradient id="lg-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#9b8aff" stopOpacity="0.18"/>
-          <stop offset="100%" stopColor="#9b8aff" stopOpacity="0"/>
-        </radialGradient>
-      </defs>
-      <circle cx="130" cy="130" r="110" fill="url(#lg-glow)"/>
-      <circle cx="130" cy="130" r="80" stroke="rgba(155,138,255,0.08)" strokeWidth="0.5" fill="none"/>
-      <circle cx="130" cy="130" r="50" stroke="rgba(245,200,66,0.1)" strokeWidth="0.5" fill="none"/>
-      <circle cx="130" cy="130" r="20" stroke="rgba(155,138,255,0.15)" strokeWidth="0.5" fill="none"/>
-      {/* compass lines */}
-      <line x1="130" y1="20" x2="130" y2="240" stroke="rgba(155,138,255,0.07)" strokeWidth="0.5"/>
-      <line x1="20" y1="130" x2="240" y2="130" stroke="rgba(155,138,255,0.07)" strokeWidth="0.5"/>
-      <line x1="47" y1="47" x2="213" y2="213" stroke="rgba(155,138,255,0.04)" strokeWidth="0.5"/>
-      <line x1="213" y1="47" x2="47" y2="213" stroke="rgba(155,138,255,0.04)" strokeWidth="0.5"/>
-      {/* stars */}
-      <circle cx="130" cy="130" r="3.5" fill="#9b8aff" opacity="0.7"/>
-      <circle cx="130" cy="50" r="2" fill="#f5c842" opacity="0.8"/>
-      <circle cx="210" cy="130" r="1.5" fill="#f5c842" opacity="0.6"/>
-      <circle cx="130" cy="210" r="1.5" fill="#e8e4f0" opacity="0.5"/>
-      <circle cx="50" cy="130" r="1.5" fill="#e8e4f0" opacity="0.5"/>
-      <circle cx="76" cy="76" r="1.2" fill="#9b8aff" opacity="0.5"/>
-      <circle cx="184" cy="76" r="1.2" fill="#9b8aff" opacity="0.5"/>
-      <circle cx="76" cy="184" r="1.2" fill="#9b8aff" opacity="0.5"/>
-      <circle cx="184" cy="184" r="1.2" fill="#9b8aff" opacity="0.5"/>
-      {/* crosshair on center star */}
-      <line x1="126" y1="130" x2="134" y2="130" stroke="#9b8aff" strokeWidth="0.5" opacity="0.5"/>
-      <line x1="130" y1="126" x2="130" y2="134" stroke="#9b8aff" strokeWidth="0.5" opacity="0.5"/>
-      {/* crosshair on gold star */}
-      <line x1="126" y1="50" x2="134" y2="50" stroke="#f5c842" strokeWidth="0.4" opacity="0.7"/>
-      <line x1="130" y1="46" x2="130" y2="54" stroke="#f5c842" strokeWidth="0.4" opacity="0.7"/>
-      {/* north pointer */}
-      <polygon points="130,24 132.5,38 127.5,38" fill="#f5c842" opacity="0.6"/>
-    </svg>
-  );
-}
-
 // ─── Login page ───────────────────────────────────────────────────────
 function LoginPage({ navigate }) {
   const [email, setEmail] = useLoginState('');
@@ -310,154 +78,227 @@ function LoginPage({ navigate }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      navigate('/');
-    }, 900);
+    setTimeout(() => { setLoading(false); navigate('/'); }, 900);
   };
 
-  const handleSso = (provider) => {
+  const handleSso = () => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      navigate('/');
-    }, 700);
+    setTimeout(() => { setLoading(false); navigate('/'); }, 700);
   };
 
   return (
     <div className="login-root">
-      {/* Background layers */}
       <div className="starfield-bg" style={{ position: 'fixed' }}/>
       <Starfield density="subtle"/>
       <div className="grain" style={{ position: 'fixed' }}/>
 
-      {/* Brand aside (desktop only) */}
-      <aside className="login-brand" aria-hidden="true">
-        <LoginBrandContent />
-      </aside>
-
-      {/* Form panel */}
       <main className="login-panel">
         <div className="login-card">
-          {/* Mobile logo */}
-          <div className="login-mobile-logo">
+          <div className="login-card-logo">
             <LoginLogo />
           </div>
 
           <div className="login-card-head">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-3">
               <div style={{ height: 1, width: 28, background: 'var(--gold)' }}/>
               <span className="eyebrow">Welkom terug</span>
             </div>
-            <h1 className="display" style={{ fontSize: 28 }}>Betreed het Sanctum</h1>
-            <p className="body mt-2">Meld u aan om uw werelden te beheren.</p>
+            <h1 className="display" style={{ fontSize: 26 }}>Aanmelden</h1>
           </div>
 
-          {/* SSO */}
           <div className="login-sso">
-            <SsoButton
-              icon={<GoogleIcon />}
-              label="Doorgaan met Google"
-              onClick={() => handleSso('google')}
-            />
-            <SsoButton
-              icon={<DiscordIcon />}
-              label="Doorgaan met Discord"
-              onClick={() => handleSso('discord')}
-            />
+            <SsoButton icon={<GoogleIcon />} label="Doorgaan met Google" onClick={handleSso}/>
+            <SsoButton icon={<DiscordIcon />} label="Doorgaan met Discord" onClick={handleSso}/>
           </div>
 
-          {/* Divider */}
           <div className="login-divider">
-            <span>of meld aan met e-mail</span>
+            <span>of via e-mail</span>
           </div>
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="login-form" noValidate>
             <div className="login-field">
               <label className="label" htmlFor="login-email">E-mailadres</label>
               <div className="login-input-wrap">
                 <svg className="login-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect x="2" y="5" width="20" height="14" rx="2"/>
-                  <path d="M2 8l10 6 10-6"/>
+                  <rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 8l10 6 10-6"/>
                 </svg>
                 <input
-                  id="login-email"
-                  type="email"
-                  className="input input-lg"
-                  placeholder="naam@domein.nl"
-                  value={email}
+                  id="login-email" type="email" className="input input-lg"
+                  placeholder="naam@domein.nl" value={email}
                   onChange={e => setEmail(e.target.value)}
-                  autoComplete="email"
-                  required
+                  autoComplete="email" required
                 />
               </div>
             </div>
 
             <div className="login-field">
-              <div className="flex justify-between items-center mb-2" style={{ marginBottom: 8 }}>
+              <div className="flex justify-between items-center" style={{ marginBottom: 8 }}>
                 <label className="label" htmlFor="login-password" style={{ margin: 0 }}>Wachtwoord</label>
-                <button
-                  type="button"
-                  className="login-link"
-                  style={{ fontSize: 11 }}
-                  onClick={() => {}}
-                >
+                <button type="button" className="login-link" style={{ fontSize: 11 }} onClick={() => {}}>
                   Vergeten?
                 </button>
               </div>
               <div className="login-input-wrap">
                 <svg className="login-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect x="3" y="11" width="18" height="11" rx="2"/>
-                  <path d="M7 11V7a5 5 0 0110 0v4"/>
+                  <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
                 </svg>
                 <input
-                  id="login-password"
-                  type={showPw ? 'text' : 'password'}
-                  className="input input-lg"
-                  placeholder="••••••••••"
-                  value={password}
+                  id="login-password" type={showPw ? 'text' : 'password'} className="input input-lg"
+                  placeholder="••••••••••" value={password}
                   onChange={e => setPassword(e.target.value)}
-                  autoComplete="current-password"
-                  required
+                  autoComplete="current-password" required
                 />
-                <button
-                  type="button"
-                  className="login-pw-toggle"
+                <button type="button" className="login-pw-toggle"
                   onClick={() => setShowPw(!showPw)}
-                  aria-label={showPw ? 'Verberg wachtwoord' : 'Toon wachtwoord'}
-                >
-                  <EyeIcon visible={showPw} />
+                  aria-label={showPw ? 'Verberg wachtwoord' : 'Toon wachtwoord'}>
+                  <EyeIcon visible={showPw}/>
                 </button>
               </div>
             </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary btn-lg w-full login-submit-btn"
-              disabled={loading}
-            >
-              {loading ? (
-                <span className="login-spinner" aria-hidden="true"/>
-              ) : (
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/>
-                  <polyline points="10 17 15 12 10 7"/>
-                  <line x1="15" y1="12" x2="3" y2="12"/>
-                </svg>
-              )}
-              {loading ? 'Sanctum betreedt…' : 'Aanmelden'}
+            <button type="submit" className="btn btn-primary btn-lg w-full login-submit-btn" disabled={loading}>
+              {loading
+                ? <><span className="login-spinner" aria-hidden="true"/> Aanmelden…</>
+                : <>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/>
+                    </svg>
+                    Aanmelden
+                  </>
+              }
             </button>
           </form>
 
           <div className="login-footer">
-            <span className="small">Nog geen pact gesloten?</span>
-            <button
-              className="login-link"
-              onClick={() => navigate('/register')}
-              type="button"
-            >
+            <span className="small">Nog geen account?</span>
+            <button className="login-link" onClick={() => navigate('/register')} type="button">
               Registreer
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+// ─── Register page ───────────────────────────────────────────────────
+function RegisterPage({ navigate }) {
+  const [email, setEmail] = useLoginState('');
+  const [password, setPassword] = useLoginState('');
+  const [confirm, setConfirm] = useLoginState('');
+  const [name, setName] = useLoginState('');
+  const [showPw, setShowPw] = useLoginState(false);
+  const [loading, setLoading] = useLoginState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => { setLoading(false); navigate('/'); }, 900);
+  };
+
+  return (
+    <div className="login-root">
+      <div className="starfield-bg" style={{ position: 'fixed' }}/>
+      <Starfield density="subtle"/>
+      <div className="grain" style={{ position: 'fixed' }}/>
+
+      <main className="login-panel">
+        <div className="login-card">
+          <div className="login-card-logo">
+            <LoginLogo />
+          </div>
+
+          <div className="login-card-head">
+            <div className="flex items-center gap-3 mb-3">
+              <div style={{ height: 1, width: 28, background: 'var(--gold)' }}/>
+              <span className="eyebrow">Nieuw account</span>
+            </div>
+            <h1 className="display" style={{ fontSize: 26 }}>Registreren</h1>
+          </div>
+
+          <form onSubmit={handleSubmit} className="login-form" noValidate>
+            <div className="login-field">
+              <label className="label" htmlFor="reg-name">Naam</label>
+              <div className="login-input-wrap">
+                <svg className="login-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                </svg>
+                <input
+                  id="reg-name" type="text" className="input input-lg"
+                  placeholder="Naam of alias" value={name}
+                  onChange={e => setName(e.target.value)}
+                  autoComplete="name" required
+                />
+              </div>
+            </div>
+
+            <div className="login-field">
+              <label className="label" htmlFor="reg-email">E-mailadres</label>
+              <div className="login-input-wrap">
+                <svg className="login-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 8l10 6 10-6"/>
+                </svg>
+                <input
+                  id="reg-email" type="email" className="input input-lg"
+                  placeholder="naam@domein.nl" value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  autoComplete="email" required
+                />
+              </div>
+            </div>
+
+            <div className="login-field">
+              <label className="label" htmlFor="reg-password">Wachtwoord</label>
+              <div className="login-input-wrap">
+                <svg className="login-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+                </svg>
+                <input
+                  id="reg-password" type={showPw ? 'text' : 'password'} className="input input-lg"
+                  placeholder="Kies een sterk wachtwoord" value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  autoComplete="new-password" required
+                />
+                <button type="button" className="login-pw-toggle"
+                  onClick={() => setShowPw(!showPw)}
+                  aria-label={showPw ? 'Verberg wachtwoord' : 'Toon wachtwoord'}>
+                  <EyeIcon visible={showPw}/>
+                </button>
+              </div>
+            </div>
+
+            <div className="login-field">
+              <label className="label" htmlFor="reg-confirm">Bevestig wachtwoord</label>
+              <div className="login-input-wrap">
+                <svg className="login-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M4 12l5 5 11-12"/>
+                </svg>
+                <input
+                  id="reg-confirm" type={showPw ? 'text' : 'password'} className="input input-lg"
+                  placeholder="Herhaal wachtwoord" value={confirm}
+                  onChange={e => setConfirm(e.target.value)}
+                  autoComplete="new-password" required
+                />
+              </div>
+            </div>
+
+            <button type="submit" className="btn btn-primary btn-lg w-full login-submit-btn" disabled={loading}>
+              {loading
+                ? <><span className="login-spinner" aria-hidden="true"/> Account aanmaken…</>
+                : <>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>
+                    </svg>
+                    Account aanmaken
+                  </>
+              }
+            </button>
+          </form>
+
+          <div className="login-footer">
+            <span className="small">Al een account?</span>
+            <button className="login-link" onClick={() => navigate('/login')} type="button">
+              Aanmelden
             </button>
           </div>
         </div>

@@ -1091,119 +1091,31 @@
   display: flex;
   min-height: 100vh;
   position: relative;
+  align-items: center;
+  justify-content: center;
 }
 
-/* ─── Brand aside (left panel, desktop) ─── */
-.login-brand {
-  width: 480px;
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: stretch;
-  background: linear-gradient(160deg, var(--surface-2) 0%, var(--void) 100%);
-  border-right: 1px solid var(--hairline);
-}
-
-.login-brand-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding: 56px 52px 52px;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-}
-
-.login-brand::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 90% 55% at 30% 0%, rgba(155,138,255,0.12) 0%, transparent 65%),
-    radial-gradient(ellipse 70% 50% at 80% 100%, rgba(245,200,66,0.07) 0%, transparent 55%);
-  pointer-events: none;
-}
-
-.login-brand-text {
-  margin-top: 48px;
-}
-
-.login-brand-motto {
-  font-family: var(--font-quote);
-  font-style: italic;
-  font-size: 22px;
-  line-height: 1.5;
-  color: var(--ink-soft);
-  position: relative;
-  padding-left: 20px;
-}
-
-.login-brand-motto::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 4px;
-  bottom: 4px;
-  width: 2px;
-  background: linear-gradient(180deg, var(--gold), transparent);
-  border-radius: 2px;
-}
-
-.login-brand-features {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 40px;
-}
-
-.login-brand-feature {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-}
-
-.login-brand-feature-icon {
-  font-size: 10px;
-  color: var(--gold);
-  margin-top: 2px;
-  flex-shrink: 0;
-  letter-spacing: 0;
-}
-
-.login-constellation {
-  position: absolute;
-  right: -40px;
-  bottom: -40px;
-  width: 260px;
-  height: 260px;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-/* ─── Form panel (right side) ─── */
 .login-panel {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 24px;
+  padding: 48px 24px 80px;
+  width: 100%;
   position: relative;
   z-index: 5;
 }
 
 .login-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 400px;
 }
 
-.login-mobile-logo {
-  display: none;
+.login-card-logo {
   margin-bottom: 40px;
 }
 
 .login-card-head {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 /* ─── Logo ─── */
@@ -1422,17 +1334,9 @@
 }
 
 /* ─── Responsive ─── */
-@media (max-width: 900px) {
-  .login-brand { display: none; }
-  .login-mobile-logo { display: flex; }
-  .login-panel {
-    padding: 48px 20px 80px;
-    align-items: flex-start;
-  }
-  .login-card { max-width: 100%; }
-}
-
 @media (max-width: 480px) {
+  .login-panel { padding: 40px 16px 80px; }
+  .login-card { max-width: 100%; }
   .login-sso { gap: 8px; }
   .sso-btn { font-size: 12px; padding: 12px 16px; }
 }
