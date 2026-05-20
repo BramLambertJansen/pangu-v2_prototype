@@ -815,50 +815,37 @@
   overflow: hidden;
   text-align: left;
   width: 100%;
-  cursor: pointer;
   transition: all 280ms cubic-bezier(.2,.7,.2,1);
 }
 .world-card:hover {
   border-color: var(--accent);
   background: var(--surface-2);
-  transform: translateY(-4px);
   box-shadow: 0 24px 56px rgba(0,0,0,0.4), 0 0 32px color-mix(in oklab, var(--accent) 22%, transparent);
 }
 
 .world-card-art {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/9;
   overflow: hidden;
+  cursor: pointer;
 }
-.world-card-art-overlay {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 70% 60% at 30% 40%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 60%),
-    linear-gradient(180deg, transparent 50%, rgba(15,14,28,0.8) 100%);
+.world-card-art:hover { opacity: 0.9; }
+
+.world-card-year {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  border-radius: var(--r-full);
+  padding: 4px 11px;
   pointer-events: none;
-}
-.world-card-glyph-frame {
-  position: absolute;
-  top: 16px; right: 16px;
-  width: 60px; height: 60px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  background: rgba(15,14,28,0.6);
-  border: 1px solid var(--hairline);
-  backdrop-filter: blur(4px);
-}
-.world-card-stamp {
-  position: absolute;
-  bottom: 14px; left: 16px;
-  padding: 6px 10px;
-  background: rgba(15,14,28,0.8);
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-xs);
 }
 
 .world-card-body {
-  padding: 24px 24px 26px;
+  padding: 22px 24px 26px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -867,22 +854,68 @@
 .world-card-stats {
   display: flex;
   align-items: center;
-  gap: var(--sp-4);
-  padding: var(--sp-4) 0;
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
+}
+.world-card-stat {
+  flex: 1;
+  text-align: center;
+  padding: 2px 0;
 }
 .world-card-stat-sep {
   width: 1px;
-  align-self: stretch;
-  background: var(--hairline);
+  height: 40px;
+  background: var(--hairline-strong);
+  flex-shrink: 0;
 }
 
-.world-card-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+.world-card-btn {
+  border-radius: var(--r-full);
+  padding: 9px 18px;
+  font-size: 12px;
 }
+.world-card-lore-btn {
+  background: var(--surface-2);
+  border-color: var(--hairline-strong);
+}
+.world-card-lore-btn:hover { background: var(--surface-3); color: var(--ink); }
+
+.world-card-edit-btn {
+  padding: 9px 13px;
+  background: var(--surface-2);
+  border-color: var(--hairline);
+}
+
+.world-card-chronicle-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--hairline);
+  text-align: left;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-family: var(--font-body);
+  background: transparent;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-radius: 0;
+  width: 100%;
+  transition: color 160ms;
+}
+.world-card-chronicle-row:first-child { border-top: 1px solid var(--hairline); }
+.world-card-chronicle-row:hover { color: var(--ink); }
+.world-card-chronicle-row:hover .world-card-chronicle-dot {
+  box-shadow: 0 0 8px currentColor;
+}
+
+.world-card-chronicle-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  transition: box-shadow 160ms;
+}
+.world-card-chronicle-name { flex: 1; }
 
 /* Bullet chip — small dot before label, color-keyed */
 .chip-bullet { position: relative; padding-left: 18px; }
@@ -958,106 +991,6 @@
   .world-hero-art { min-height: 280px; }
   .world-hero-body { padding: 32px; }
   .world-hero-meta { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* ─── World detail card ────────────────────────────────────── */
-.world-detail-card {
-  background: var(--surface);
-  border: 1px solid var(--hairline-strong);
-  border-radius: var(--r-md);
-  overflow: hidden;
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.world-detail-art {
-  position: relative;
-  width: 100%;
-}
-.world-detail-art .placeholder-img {
-  width: 100%;
-  display: block;
-}
-
-.world-detail-year {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  border-radius: var(--r-full);
-  padding: 5px 12px;
-}
-
-.world-detail-body {
-  padding: 28px 28px 32px;
-}
-
-.world-detail-stats {
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-.world-detail-stat {
-  flex: 1;
-  text-align: center;
-  padding: 4px 0;
-}
-.world-detail-stat-sep {
-  width: 1px;
-  height: 44px;
-  background: var(--hairline-strong);
-  flex-shrink: 0;
-}
-
-.world-detail-lore-btn {
-  background: var(--surface-2);
-  border-color: var(--hairline-strong);
-}
-.world-detail-lore-btn:hover {
-  background: var(--surface-3);
-}
-
-.world-detail-edit-btn {
-  padding: 10px 14px;
-  background: var(--surface-2);
-  border-color: var(--hairline);
-}
-
-.world-detail-chronicle-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--hairline);
-  text-align: left;
-  color: var(--ink-soft);
-  font-size: 15px;
-  transition: color 160ms;
-  background: transparent;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  border-radius: 0;
-  width: 100%;
-}
-.world-detail-chronicle-row:first-child { border-top: 1px solid var(--hairline); }
-.world-detail-chronicle-row:hover { color: var(--ink); }
-.world-detail-chronicle-row:hover .world-detail-chronicle-dot {
-  box-shadow: 0 0 8px var(--accent, currentColor);
-}
-
-.world-detail-chronicle-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 9999px;
-  flex-shrink: 0;
-  transition: box-shadow 160ms;
-}
-.world-detail-chronicle-name {
-  flex: 1;
-  font-family: var(--font-body);
 }
 
 /* ─── Chronicle row ────────────────────────────────────────── */

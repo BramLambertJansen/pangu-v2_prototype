@@ -50,7 +50,7 @@ function Dashboard({ navigate }) {
 
       <div className="worlds-grid mt-6">
         {WORLDS.map(w => (
-          <WorldCard key={w.id} world={w} campaigns={CAMPAIGNS.filter(c => c.worldId === w.id)} onClick={() => navigate(`/world/${w.id}`)} />
+          <WorldCard key={w.id} world={w} campaigns={CAMPAIGNS.filter(c => c.worldId === w.id)} onClick={() => navigate(`/world/${w.id}`)} navigate={navigate} />
         ))}
         <button className="world-card world-card-forge clickable" onClick={() => navigate('/worlds')}>
           <div className="forge-orb">
@@ -194,58 +194,98 @@ function ContinueCard({ campaign, world, party, navigate }) {
 // ────────────────────────────────────────────────────────────────────
 //  WorldCard
 // ────────────────────────────────────────────────────────────────────
-function WorldCard({ world, campaigns, onClick }) {
+function WorldCard({ world, campaigns, onClick, navigate }) {
   const w = world;
   const isEmpty = campaigns.length === 0;
   return (
-    <button className="world-card clickable" onClick={onClick} style={{ '--accent': w.accent, '--accent-2': w.secondary }}>
-      <div className="world-card-art">
-        <CosmicImg glyph={w.glyph} accent={w.accent} ratio="4/3"/>
-        <div className="world-card-art-overlay"/>
-        <div className="world-card-glyph-frame">
-          <CompassRose size={44} opacity={0.55}/>
-        </div>
-        <div className="world-card-stamp">
-          <div className="micro" style={{ color: 'var(--gold)' }}>{w.yearLabel}</div>
-        </div>
+    <div className="world-card" style={{ '--accent': w.accent, '--accent-2': w.secondary }}>
+      {/* Art — click navigates to world detail */}
+      <div className="world-card-art clickable" onClick={onClick}>
+        <CosmicImg glyph={w.glyph} accent={w.accent} ratio="16/9"/>
+        <span className="badge badge-solid-gold world-card-year">{w.yearLabel}</span>
       </div>
+
       <div className="world-card-body">
-        <div className="flex items-center justify-between gap-3">
-          <div className="eyebrow eyebrow-violet">{w.eraName}</div>
+        {/* Eyebrow row */}
+        <div className="flex items-center justify-between" style={{ marginBottom: 10 }}>
+          <div className="flex items-center gap-2">
+            <div style={{ width: 28, height: 1, background: 'var(--gold)', flexShrink: 0 }}/>
+            <span className="eyebrow eyebrow-violet" style={{ fontSize: 11 }}>{w.eraName}</span>
+          </div>
           <span className="micro" style={{ color: 'var(--muted)' }}>{w.lastVisited}</span>
         </div>
-        <h3 className="display mt-2" style={{ fontSize: 26 }}>{w.name}</h3>
-        <p className="quote mt-1" style={{ fontSize: 14 }}>"{w.motto}"</p>
 
-        <div className="world-card-stats mt-5">
-          <div>
-            <div className="font-display" style={{ fontSize: 22, color: 'var(--ink)' }}>{campaigns.length}</div>
-            <div className="micro mt-1">Chronicles</div>
+        {/* Title */}
+        <h3 className="display clickable" style={{ fontSize: 28, marginBottom: 8 }} onClick={onClick}>{w.name}</h3>
+
+        {/* Motto */}
+        <p className="quote" style={{ fontSize: 14, marginBottom: 12 }}>"{w.motto}"</p>
+
+        {/* Description */}
+        <p className="small" style={{ color: 'var(--ink-soft)', marginBottom: 20, lineHeight: 1.7 }}>{w.description}</p>
+
+        {/* Divider */}
+        <div style={{ height: 1, background: 'var(--hairline)', marginBottom: 20 }}/>
+
+        {/* Stats */}
+        <div className="world-card-stats">
+          <div className="world-card-stat">
+            <div className="font-display" style={{ fontSize: 26, color: 'var(--ink)', lineHeight: 1 }}>{campaigns.length}</div>
+            <div className="micro mt-2">CHRONICLES</div>
           </div>
           <div className="world-card-stat-sep"/>
-          <div>
-            <div className="font-display" style={{ fontSize: 22, color: 'var(--ink)' }}>{w.locations}</div>
-            <div className="micro mt-1">Locations</div>
+          <div className="world-card-stat">
+            <div className="font-display" style={{ fontSize: 26, color: 'var(--ink)', lineHeight: 1 }}>{w.locations}</div>
+            <div className="micro mt-2">LOCATIONS</div>
           </div>
           <div className="world-card-stat-sep"/>
-          <div>
-            <div className="font-display" style={{ fontSize: 22, color: 'var(--ink)' }}>{w.npcs}</div>
-            <div className="micro mt-1">Living cast</div>
+          <div className="world-card-stat">
+            <div className="font-display" style={{ fontSize: 26, color: 'var(--ink)', lineHeight: 1 }}>{w.npcs}</div>
+            <div className="micro mt-2">LIVING CAST</div>
           </div>
         </div>
 
+        {/* Actions */}
+        <div className="flex gap-3 mt-6 items-center flex-wrap">
+          <button className="btn btn-primary world-card-btn" onClick={e => { e.stopPropagation(); onClick(); }}>
+            <Icon name="plus" size={13}/> New Chronicle
+          </button>
+          <button className="btn btn-ghost world-card-btn world-card-lore-btn" onClick={e => e.stopPropagation()}>
+            <Icon name="sparkles" size={13} style={{ color: 'var(--gold)' }}/> Lore Forge
+          </button>
+          <button className="btn btn-ghost world-card-edit-btn" aria-label="Edit world" onClick={e => e.stopPropagation()}>
+            <Icon name="edit" size={15}/>
+          </button>
+        </div>
+
+        {/* Active Chronicles */}
         {!isEmpty && (
-          <div className="world-card-chips mt-5">
-            {campaigns.slice(0, 3).map(c => (
-              <span key={c.id} className="chip chip-bullet" style={{ '--bullet': c.accent }}>{c.name.split(' ').slice(0, 3).join(' ')}</span>
-            ))}
+          <div className="mt-6">
+            <div className="flex items-center gap-2 mb-3">
+              <div style={{ width: 24, height: 1, background: 'var(--hairline-strong)', flexShrink: 0 }}/>
+              <span className="eyebrow eyebrow-muted" style={{ fontSize: 10 }}>ACTIVE CHRONICLES</span>
+            </div>
+            <div>
+              {campaigns.slice(0, 3).map(c => (
+                <button
+                  key={c.id}
+                  className="world-card-chronicle-row clickable"
+                  onClick={e => { e.stopPropagation(); navigate ? navigate(`/campaign/${c.id}`) : onClick(); }}
+                >
+                  <span className="world-card-chronicle-dot" style={{ background: c.accent }}/>
+                  <span className="world-card-chronicle-name">{c.name}</span>
+                  <Icon name="chevron-right" size={14}/>
+                </button>
+              ))}
+            </div>
           </div>
         )}
+
         {isEmpty && (
-          <div className="mt-5 small" style={{ color: 'var(--muted)', fontStyle: 'italic' }}>Empty. Begin where you like.</div>
+          <p className="mt-5 small" style={{ color: 'var(--muted)', fontStyle: 'italic' }}>Een leeg kosmos wacht.</p>
         )}
       </div>
-    </button>
+    </div>
   );
 }
 
@@ -327,7 +367,7 @@ function WorldsOverview({ navigate }) {
 
       <div className="worlds-grid">
         {WORLDS.map(w => (
-          <WorldCard key={w.id} world={w} campaigns={CAMPAIGNS.filter(c => c.worldId === w.id)} onClick={() => navigate(`/world/${w.id}`)} />
+          <WorldCard key={w.id} world={w} campaigns={CAMPAIGNS.filter(c => c.worldId === w.id)} onClick={() => navigate(`/world/${w.id}`)} navigate={navigate} />
         ))}
         <button className="world-card world-card-forge clickable">
           <div className="forge-orb">
@@ -342,10 +382,10 @@ function WorldsOverview({ navigate }) {
 }
 
 // ════════════════════════════════════════════════════════════════════
-//  WORLD DETAIL — card layout matching design spec
+//  WORLD DETAIL — one world's atlas + campaigns inside it
 // ════════════════════════════════════════════════════════════════════
 function WorldDetail({ navigate, params }) {
-  const { WORLDS, CAMPAIGNS, LOCATIONS } = window.PANGU_DATA;
+  const { WORLDS, CAMPAIGNS, LOCATIONS, NPCS } = window.PANGU_DATA;
   const w = WORLDS.find(x => x.id === params.id);
   const [selected, setSelected] = useStateD(null);
 
@@ -361,6 +401,7 @@ function WorldDetail({ navigate, params }) {
   const camps = CAMPAIGNS.filter(c => c.worldId === w.id);
   const campIds = new Set(camps.map(c => c.id));
   const locs = LOCATIONS.filter(l => campIds.has(l.campaignId));
+  const npcs = NPCS.filter(n => campIds.has(n.campaignId));
 
   return (
     <div className="page-enter page-max" data-screen-label="World Detail">
@@ -368,104 +409,73 @@ function WorldDetail({ navigate, params }) {
         <Icon name="arrow-left" size={14}/> All worlds
       </button>
 
-      {/* World card */}
-      <div className="world-detail-card" style={{ '--accent': w.accent, '--accent-2': w.secondary }}>
-
-        {/* Art */}
-        <div className="world-detail-art">
-          <CosmicImg glyph={w.glyph} accent={w.accent} ratio="16/9"/>
-          <span className="badge badge-solid-gold world-detail-year">{w.yearLabel}</span>
+      {/* World hero */}
+      <section className="world-hero" style={{ '--accent': w.accent, '--accent-2': w.secondary }}>
+        <div className="world-hero-art">
+          <CosmicImg glyph={w.glyph} accent={w.accent} ratio="3/2"/>
+          <div className="world-hero-overlay"/>
         </div>
-
-        {/* Body */}
-        <div className="world-detail-body">
-
-          {/* Eyebrow row */}
-          <div className="flex items-center justify-between" style={{ marginBottom: 10 }}>
-            <div className="flex items-center gap-2">
-              <div style={{ width: 28, height: 1, background: 'var(--gold)', flexShrink: 0 }}/>
-              <span className="eyebrow eyebrow-violet" style={{ fontSize: 11 }}>{w.eraName}</span>
-            </div>
-            <span className="micro" style={{ color: 'var(--muted)' }}>{w.lastVisited}</span>
+        <div className="world-hero-body">
+          <div className="campaign-hero-eyebrow">
+            <span className="kicker">{w.eraName}</span>
+            <span style={{ flex: 1, height: 1, background: 'var(--hairline)' }}/>
+            <span className="badge badge-solid-gold">{w.yearLabel}</span>
           </div>
 
-          {/* Title */}
-          <h1 className="display-xl" style={{ marginBottom: 10 }}>{w.name}</h1>
+          <h1 className="display-xl glow-violet" style={{ textTransform: 'uppercase', marginBottom: 16 }}>{w.name}</h1>
+          <div className="campaign-hero-motto"><span>"</span>{w.motto}<span>"</span></div>
+          <p className="body-lg mt-6" style={{ maxWidth: 680 }}>{w.description}</p>
 
-          {/* Motto */}
-          <p className="quote" style={{ fontSize: 15, marginBottom: 14 }}>"{w.motto}"</p>
-
-          {/* Description */}
-          <p className="body-sm" style={{ color: 'var(--ink-soft)', marginBottom: 22, lineHeight: 1.7 }}>{w.description}</p>
-
-          {/* Divider */}
-          <div style={{ height: 1, background: 'var(--hairline)', marginBottom: 22 }}/>
-
-          {/* Stats */}
-          <div className="world-detail-stats">
-            <div className="world-detail-stat">
-              <div className="font-display" style={{ fontSize: 30, color: 'var(--ink)', lineHeight: 1 }}>{camps.length}</div>
-              <div className="micro mt-2">CHRONICLES</div>
+          <div className="world-hero-meta mt-8">
+            <div>
+              <div className="micro">Chronicles</div>
+              <div className="font-display" style={{ fontSize: 28, color: 'var(--gold)', marginTop: 2 }}>{camps.length}</div>
             </div>
-            <div className="world-detail-stat-sep"/>
-            <div className="world-detail-stat">
-              <div className="font-display" style={{ fontSize: 30, color: 'var(--ink)', lineHeight: 1 }}>{w.locations}</div>
-              <div className="micro mt-2">LOCATIONS</div>
+            <div>
+              <div className="micro">Locations</div>
+              <div className="font-display" style={{ fontSize: 28, color: 'var(--ink)', marginTop: 2 }}>{w.locations}</div>
             </div>
-            <div className="world-detail-stat-sep"/>
-            <div className="world-detail-stat">
-              <div className="font-display" style={{ fontSize: 30, color: 'var(--ink)', lineHeight: 1 }}>{w.npcs}</div>
-              <div className="micro mt-2">LIVING CAST</div>
+            <div>
+              <div className="micro">Living cast</div>
+              <div className="font-display" style={{ fontSize: 28, color: 'var(--ink)', marginTop: 2 }}>{w.npcs}</div>
+            </div>
+            <div>
+              <div className="micro">Last visited</div>
+              <div className="font-display" style={{ fontSize: 18, color: 'var(--gold)', marginTop: 6 }}>{w.lastVisited}</div>
             </div>
           </div>
 
-          {/* Actions */}
-          <div className="flex gap-3 mt-7 items-center flex-wrap">
-            <button className="btn btn-primary" style={{ borderRadius: 'var(--r-full)', padding: '10px 20px' }}>
-              <Icon name="plus" size={14}/> New Chronicle
+          <div className="flex gap-3 flex-wrap mt-8">
+            <button className="btn btn-primary btn-lg">
+              <Icon name="plus" size={14}/> New Chronicle in {w.name}
             </button>
-            <button className="btn btn-ghost world-detail-lore-btn" style={{ borderRadius: 'var(--r-full)', padding: '10px 20px' }}>
-              <Icon name="sparkles" size={14} style={{ color: 'var(--gold)' }}/> Lore Forge
+            <button className="btn btn-gold btn-lg">
+              <Icon name="sparkles" size={14}/> Lore Forge
             </button>
-            <button className="btn btn-ghost world-detail-edit-btn" aria-label="Edit world">
-              <Icon name="edit" size={16}/>
-            </button>
+            <button className="btn btn-ghost btn-lg"><Icon name="edit" size={14}/> Edit World</button>
           </div>
-
-          {/* Active Chronicles */}
-          {camps.length > 0 && (
-            <div className="mt-7">
-              <div className="flex items-center gap-2 mb-4">
-                <div style={{ width: 28, height: 1, background: 'var(--hairline-strong)' }}/>
-                <span className="eyebrow eyebrow-muted" style={{ fontSize: 10 }}>Active Chronicles</span>
-              </div>
-              <div className="flex flex-col">
-                {camps.map(c => (
-                  <button
-                    key={c.id}
-                    className="world-detail-chronicle-row clickable"
-                    onClick={() => navigate(`/campaign/${c.id}`)}
-                  >
-                    <span className="world-detail-chronicle-dot" style={{ background: c.accent }}/>
-                    <span className="world-detail-chronicle-name">{c.name}</span>
-                    <Icon name="chevron-right" size={15}/>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {camps.length === 0 && (
-            <div className="mt-7 text-center" style={{ padding: '32px 0' }}>
-              <CompassRose size={48} opacity={0.3}/>
-              <p className="small mt-4" style={{ color: 'var(--muted)', fontStyle: 'italic' }}>Een leeg kosmos wacht.</p>
-              <button className="btn btn-primary mt-5" style={{ borderRadius: 'var(--r-full)' }}>
-                <Icon name="plus" size={14}/> Begin a chronicle
-              </button>
-            </div>
-          )}
         </div>
-      </div>
+      </section>
+
+      {/* Chronicles inside this world */}
+      <OrnateDivider label="Chronicles in this World" glyph="❀"/>
+
+      {camps.length === 0 ? (
+        <div className="surface text-center" style={{ padding: 60 }}>
+          <CompassRose size={64} opacity={0.4}/>
+          <h3 className="display mt-6" style={{ fontSize: 22 }}>No chronicles yet</h3>
+          <p className="small mt-2" style={{ maxWidth: 380, margin: '8px auto 0' }}>This world is empty. Begin the first chronicle to plant a seed.</p>
+          <button className="btn btn-primary mt-6">
+            <Icon name="plus" size={14}/> Begin a chronicle
+          </button>
+        </div>
+      ) : (
+        <div className="dash-chronicle-grid">
+          {camps.map(c => (
+            <ChronicleRow key={c.id} campaign={c} world={w} navigate={navigate} />
+          ))}
+        </div>
+      )}
 
       {/* Atlas — locations as constellation */}
       {locs.length > 0 && (
