@@ -76,7 +76,7 @@ function CampaignBigCard({ campaign, onClick }) {
   return (
     <button className="campaign-card clickable" onClick={onClick} style={{ '--accent': c.accent }}>
       <div className="campaign-card-art">
-        <CosmicImg glyph={c.glyph} accent={c.accent} ratio="16/9"/>
+        <CosmicImg glyph={c.glyph} accent={c.accent} ratio="2/1"/>
         <div className="campaign-card-overlay"/>
         <div className="campaign-card-stamp">
           <div className="campaign-card-roman">{toRomanP(c.chapter)}</div>
@@ -87,9 +87,13 @@ function CampaignBigCard({ campaign, onClick }) {
       </div>
 
       <div className="campaign-card-body">
-        <div className="eyebrow eyebrow-violet" style={{ fontSize: 10 }}>{c.setting} · {c.system}</div>
-        <h3 className="display" style={{ fontSize: 24, marginTop: 8, marginBottom: 4 }}>{c.name}</h3>
-        <p className="quote" style={{ fontSize: 15, color: 'var(--ink-soft)' }}>"{c.motto}"</p>
+        <div className="flex items-center justify-center gap-3" style={{ marginBottom: 10 }}>
+          <div style={{ width: 24, height: 1, background: 'var(--gold)', flexShrink: 0 }}/>
+          <span className="eyebrow eyebrow-violet" style={{ fontSize: 10 }}>{c.setting} · {c.system}</span>
+          <div style={{ width: 24, height: 1, background: 'var(--gold)', flexShrink: 0 }}/>
+        </div>
+        <h3 className="display" style={{ fontSize: 24, marginBottom: 6 }}>{c.name}</h3>
+        <p className="quote" style={{ fontSize: 14, margin: '0 0 0 0' }}>"{c.motto}"</p>
 
         <div className="campaign-card-meta">
           <div className="campaign-card-meta-item">

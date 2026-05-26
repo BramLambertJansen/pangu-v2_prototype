@@ -18,26 +18,25 @@
   overflow: hidden;
   text-align: left;
   width: 100%;
-  transition: all 280ms cubic-bezier(.2,.7,.2,1);
+  transition: border-color 280ms cubic-bezier(.2,.7,.2,1), box-shadow 280ms cubic-bezier(.2,.7,.2,1), transform 280ms cubic-bezier(.2,.7,.2,1);
 }
 
 .campaign-card:hover {
-  border-color: var(--accent);
-  background: var(--surface-2);
+  border-color: var(--accent, var(--violet));
   transform: translateY(-4px);
-  box-shadow: 0 24px 56px rgba(0,0,0,0.4), 0 0 32px color-mix(in oklab, var(--accent) 25%, transparent);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.45), 0 0 40px color-mix(in oklab, var(--accent, var(--violet)) 20%, transparent);
 }
 
 .campaign-card-art {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 2/1;
   overflow: hidden;
 }
 
 .campaign-card-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(15,14,28,0.85) 100%);
+  background: linear-gradient(180deg, transparent 30%, var(--surface) 100%);
   pointer-events: none;
 }
 
@@ -60,12 +59,20 @@
   line-height: 1;
 }
 
-.campaign-card-body { padding: 20px; }
+.campaign-card-body {
+  padding: 20px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
 
 .campaign-card-meta {
   display: flex; gap: var(--sp-4);
-  margin: var(--sp-5) 0 var(--sp-5);
+  margin: var(--sp-4) 0 var(--sp-4);
   flex-wrap: wrap;
+  justify-content: center;
   font-size: 12px;
   color: var(--muted);
 }
@@ -74,7 +81,7 @@
   letter-spacing: 0.04em;
 }
 
-.campaign-card-progress { margin-top: var(--sp-4); padding-top: var(--sp-4); border-top: 1px solid var(--hairline); }
+.campaign-card-progress { width: 100%; margin-top: auto; padding-top: var(--sp-4); border-top: 1px solid var(--hairline); }
 
 .campaign-card-bar { height: 4px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
 .campaign-card-bar-fill {
